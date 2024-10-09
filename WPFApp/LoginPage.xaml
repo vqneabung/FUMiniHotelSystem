@@ -1,0 +1,34 @@
+﻿<Window x:Class="WPFApp.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp"
+        mc:Ignorable="d"
+        Title="Login" Height="300" Width="500">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Target="{Binding ElementName=txtEmail}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                    <AccessText Text="Username"/>
+                </StackPanel>
+            </Label>
+            <TextBox Name="txtEmail"/>
+            <Label Target="{Binding ElementName=txtPassword}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_blue.png"/>
+                    <AccessText Text="Password"/>
+                </StackPanel>
+            </Label>
+            <PasswordBox Name="txtPassword"/>
+            <Button Click="btnLogin_Click" Margin="200 10" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://www.vecteezy.com/free-vector/login-icon"/>
+                    <TextBlock Margin="5 0">Login</TextBlock> 
+                </StackPanel>
+            </Button>
+            <Button Click="btnClose_Click" Margin="200 10" >Close</Button>
+        </StackPanel>
+    </Grid>
+</Window>

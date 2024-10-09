@@ -16,5 +16,7 @@ namespace Repositories
         Customer GetCustomerById(int customerId);
         ObservableCollection<Customer> GetAllCustomers();
 
+        Customer GetCustomerByEmail(string customerEmail);
+
     }
 }

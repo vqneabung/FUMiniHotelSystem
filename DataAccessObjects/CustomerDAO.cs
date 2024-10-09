@@ -124,6 +124,18 @@ namespace DataAccessObjects
             return null;
         }
 
+        public Customer GetCustomerByEmail(string customerEmail)
+        {
+            foreach (Customer c in listCustomer)
+            {
+                if (c.EmailAddress == customerEmail)
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+
         public ObservableCollection<Customer> GetAllCustomers()
         {
             return listCustomer;

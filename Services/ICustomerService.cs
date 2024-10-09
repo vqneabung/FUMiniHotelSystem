@@ -10,6 +10,7 @@ namespace Services
         void DeleteCustomer(int customerId);
         Customer GetCustomerById(int customerId);
         ObservableCollection<Customer> GetAllCustomers();
+        Customer GetCustomerByEmail(string customerEmail);
 
     }
 }

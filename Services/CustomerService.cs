@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class CustomerService : ICustomerRepository
+    public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository customerRepository;
+
+        public CustomerService()
+        {
+            customerRepository = new CustomerRepository();
+        }
 
         public void AddCustomer(Customer customer)
         {
@@ -36,6 +41,11 @@ namespace Services
         public ObservableCollection<Customer> GetAllCustomers()
         {
             return customerRepository.GetAllCustomers();
+        }
+
+        public Customer GetCustomerByEmail(string customerEmail)
+        {
+            return customerRepository.GetCustomerByEmail(customerEmail);
         }
 
     }
