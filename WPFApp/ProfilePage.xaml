@@ -8,7 +8,34 @@
         Title="ProfilePage" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="180,0,0,69">
-            
+            <Label Target="{Binding ElementName=txtEmail}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                    <AccessText Text="Email"/>
+                </StackPanel>
+            </Label>
+            <TextBox x:Name="txtEmail"/>
+            <Label Target="{Binding ElementName=txtFullName}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                    <AccessText Text="Full Name"/>
+                </StackPanel>
+            </Label>
+            <TextBox x:Name="txtFullName"/>
+            <Label Target="{Binding ElementName=txtTelephone}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                    <AccessText Text="Telephone"/>
+                </StackPanel>
+            </Label>
+            <TextBox x:Name="txtTelephone"/>
+            <Label Target="{Binding ElementName=dateBirthDate}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                    <AccessText Text="Birthday"/>
+                </StackPanel>
+            </Label>
+            <DatePicker x:Name="dateBirthDate"/>
         </StackPanel>
         <StackPanel Margin="180,365,0,0">
 
