@@ -17,8 +17,8 @@
                 <Button Height="30" Width="100" Margin="25 0" Click="btnProfile_Click">
                     Profile
                 </Button>
-                <Button Height="30" Width="100" Margin="100 0" Click="btnBooking_Click">
-                    Booking
+                <Button Height="30" Width="100" Margin="100 0" Click="btnBookingHistory_Click">
+                    Booking History
                 </Button>
             </StackPanel>
         </StackPanel>

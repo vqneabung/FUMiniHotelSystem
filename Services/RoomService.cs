@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class RoomService : IRoomRepository
+    public class RoomService : IRoomService
     {
         private readonly IRoomRepository roomRepository;
+
+        public RoomService()
+        {
+            roomRepository = new RoomRepository();
+        }
 
         public void AddRoom(Room room)
         {

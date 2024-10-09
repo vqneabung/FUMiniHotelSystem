@@ -1,4 +1,5 @@
 ﻿using BussinessObjects;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,31 +11,36 @@ namespace Services
 {
     public class RoomTypeService : IRoomTypeService
     {
-        private readonly IRoomTypeService roomTypeService;
+        private readonly IRoomTypeRepository roomTypeRepository;
+
+        public RoomTypeService()
+        {
+            roomTypeRepository = new RoomTypeRepository();
+        } 
 
         public void AddRoomType(RoomType roomType)
         {
-            roomTypeService.AddRoomType(roomType);
+            roomTypeRepository.AddRoomType(roomType);
         }
 
         public void DeleteRoomType(int id)
         {
-            roomTypeService.DeleteRoomType(id);
+            roomTypeRepository.DeleteRoomType(id);
         }
 
         public ObservableCollection<RoomType> GetAllRoomTypes()
         {
-            return roomTypeService.GetAllRoomTypes(); 
+            return roomTypeRepository.GetAllRoomTypes(); 
         }
 
         public RoomType GetRoomTypeById(int roomTypeId)
         {
-            return roomTypeService.GetRoomTypeById(roomTypeId);
+            return roomTypeRepository.GetRoomTypeById(roomTypeId);
         }
 
         public void UpdateRoomType(RoomType roomType)
         {
-           roomTypeService.UpdateRoomType(roomType);
+            roomTypeRepository.UpdateRoomType(roomType);
         }
     }
 }

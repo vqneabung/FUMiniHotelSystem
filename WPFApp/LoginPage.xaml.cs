@@ -21,20 +21,18 @@ namespace WPFApp
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class LoginPage : Window
     {
         public readonly IConfiguration configuration;
-        public readonly ICustomerService customerService;
+        public static readonly ICustomerService customerService;
 
-        public Login()
+        public LoginPage()
         {
             InitializeComponent();
             configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true, true)
                 .Build();
-
-            customerService = new CustomerService();
         }
 
 
@@ -48,13 +46,14 @@ namespace WPFApp
             {
                 if (adminPassword == txtPassword.Password)
                 {
-
+                    UserData.Email = txtEmail.Text;
                 }
             }
             else if (customerService.GetCustomerByEmail(txtEmail.Text) != null)
             {
                 if (customerService.GetCustomerByEmail(txtEmail.Text).Password == txtPassword.Password)
-                {
+                {   
+                    UserData.Email = txtEmail.Text;
                     HomePage homePage = new HomePage();
                     homePage.Show();
                     this.Close();

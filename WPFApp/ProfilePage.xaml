@@ -14,31 +14,31 @@
                     <AccessText Text="Email"/>
                 </StackPanel>
             </Label>
-            <TextBox x:Name="txtEmail"/>
+            <TextBox x:Name="txtEmail" IsReadOnly="True"/>
             <Label Target="{Binding ElementName=txtFullName}" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                     <AccessText Text="Full Name"/>
                 </StackPanel>
             </Label>
-            <TextBox x:Name="txtFullName"/>
+            <TextBox x:Name="txtFullName" IsReadOnly="True"/>
             <Label Target="{Binding ElementName=txtTelephone}" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                     <AccessText Text="Telephone"/>
                 </StackPanel>
             </Label>
-            <TextBox x:Name="txtTelephone"/>
+            <TextBox x:Name="txtTelephone" IsReadOnly="True"/>
             <Label Target="{Binding ElementName=dateBirthDate}" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                     <AccessText Text="Birthday"/>
                 </StackPanel>
             </Label>
-            <DatePicker x:Name="dateBirthDate"/>
+            <DatePickerTextBox x:Name="dateBirthDate" IsReadOnly="True"/>
         </StackPanel>
         <StackPanel Margin="180,365,0,0" Orientation="Horizontal">
-            <Button Width="100" Margin="50 10">Edit Password</Button>
+            <Button Width="100" Margin="50 10" Click="Button_Click">Edit Password</Button>
             <Button Width="100" Margin="50 10">Update</Button>
             <Button Width="100" Margin="50 10">Close</Button>
         </StackPanel>

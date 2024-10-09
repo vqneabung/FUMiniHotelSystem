@@ -34,9 +34,9 @@ namespace WPFApp
             profilePage.Show();
         }
 
-        private void btnBooking_Click(object sender, RoutedEventArgs e)
+        private void btnBookingHistory_Click(object sender, RoutedEventArgs e)
         {
-
+                     
         }
     }
 }
