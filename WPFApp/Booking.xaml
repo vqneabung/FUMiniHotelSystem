@@ -69,7 +69,7 @@
                             <AccessText Text="Number of People"/>
                         </StackPanel>
                     </Label>
-                    <TextBox x:Name="txtNumberPeople"/>
+                    <TextBox x:Name="txtNumberPeople" TextChanged="txtNumberPeople_TextChanged"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="143">
                             <Label Target="{Binding ElementName=txtStartDay}" >

@@ -60,5 +60,10 @@ namespace Repositories
         {
             RoomDAO.UpdateRoom(room);
         }
+
+        public Room GetRoomByRoomNumber(string roomNumber)
+        {
+            return RoomDAO.GetRoomByRoomNumber(roomNumber);
+        }
     }
 }

@@ -67,6 +67,18 @@ namespace DataAccessObjects
             return null;
         }
 
+        public Room GetRoomByRoomNumber(string roomNumber)
+        {
+            foreach (Room room in listRooms)
+            {
+                if (room.RoomNumber == roomNumber)
+                {
+                    return room;
+                }
+            }
+            return null;
+        }
+
         public void AddRoom(Room room)
         {
             if (listRooms.Count == 0)

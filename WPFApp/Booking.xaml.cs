@@ -99,5 +99,22 @@ namespace WPFApp
             cboRoom.SelectedIndex = 0;
             txtStatus.Text = "Available";
         }
+
+        private void txtNumberPeople_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var max = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomMaxCapacity;
+            if (int.TryParse(txtNumberPeople.Text, out int numberPeople))
+            {
+                if (numberPeople > max)
+                {   
+                    MessageBox.Show("Please enter a number less than or equal to " + max);
+                    txtNumberPeople.Text = max.ToString();
+                    return;
+                }
+            }
+
+            lbRoomPrice.Content = "Room Price: " + _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDate.ToString();
+
+        }
     }
 }
