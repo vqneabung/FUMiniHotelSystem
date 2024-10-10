@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace WPFApp
     /// </summary>
     public partial class HomePage : Window
     {   
-
+ 
 
         public HomePage()   
         {
@@ -30,7 +31,8 @@ namespace WPFApp
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            ProfilePage profilePage = new ProfilePage();
+            var serviceProvider = App.ServiceProvider;
+            ProfilePage profilePage = serviceProvider.GetRequiredService<ProfilePage>();
             profilePage.Show();
         }
 

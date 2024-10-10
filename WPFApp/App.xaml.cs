@@ -15,15 +15,13 @@ namespace WPFApp
     /// </summary>
     public partial class App : Application
     {
-        public ServiceProvider? ServiceProvider { get; private set; }
+        public static ServiceProvider? ServiceProvider { get; private set; }  
         public IConfiguration? configuration; 
 
 
         protected override void OnStartup(StartupEventArgs e)
         {
             
-            base.OnStartup(e);
- 
             var serviceCollection = new ServiceCollection();
             ConfigureService(serviceCollection);
             ServiceProvider = serviceCollection.BuildServiceProvider();
@@ -36,23 +34,23 @@ namespace WPFApp
 
         private void ConfigureService(IServiceCollection services)
         {
-            configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
-            services.AddTransient<LoginPage>();
-            services.AddTransient<HomePage>();
-            services.AddTransient<AdminPage>();
-            services.AddTransient<ProfilePage>();
-            services.AddTransient<BookingHistory>();
-            services.AddTransient<ManageRoomPage>();
-            services.AddTransient<ManageRoomTypePage>();
+                configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+                services.AddTransient<LoginPage>();
+                services.AddTransient<HomePage>();
+                services.AddTransient<AdminPage>();
+                services.AddTransient<ProfilePage>();
+                services.AddTransient<BookingHistory>();
+                services.AddTransient<ManageRoomPage>();
+                services.AddTransient<ManageRoomTypePage>();
 
-            services.AddSingleton<IConfiguration>(configuration);
+                services.AddSingleton<IConfiguration>(configuration);
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
-            services.AddScoped<IRoomTypeService, RoomTypeService>();
+                services.AddScoped<ICustomerRepository, CustomerRepository>();
+                services.AddScoped<ICustomerService, CustomerService>();
+                services.AddScoped<IRoomRepository, RoomRepository>();
+                services.AddScoped<IRoomService, RoomService>();
+                services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
+                services.AddScoped<IRoomTypeService, RoomTypeService>();
 
 
 

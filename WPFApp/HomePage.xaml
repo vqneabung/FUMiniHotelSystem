@@ -10,7 +10,7 @@
         <StackPanel Margin="50">
             <StackPanel Margin="50" Height="100">
                 <TextBlock FontSize="75" HorizontalAlignment="Center">
-                    Hello World
+                    Home Page
                 </TextBlock>
             </StackPanel>
             <StackPanel Margin="50 -5" Height="68" Width="379" Orientation="Horizontal">

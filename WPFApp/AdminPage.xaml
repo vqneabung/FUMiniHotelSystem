@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="AdminPage" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="50">
+            <StackPanel Margin="50" Height="100">
+                <TextBlock FontSize="75" HorizontalAlignment="Center">
+             Admin
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Height="96" Width="701" Orientation="Horizontal">
+                <Button Height="30" Width="120" Margin="20 0" Click="btnProfile_Click" Content="Manage User"/>
+                <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoom_Click" Content="Manage Room"/>
+                <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoomType_Click" Content="Manage Room Type"/>
+                <Button Height="30" Width="185" Margin="20 0" Click="btnBookingReservationHistory_Click" Content="Booking Reservation History"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

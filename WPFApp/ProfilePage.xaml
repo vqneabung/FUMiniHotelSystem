@@ -35,15 +35,15 @@
                     <AccessText Text="Birthday"/>
                 </StackPanel>
             </Label>
-            <DatePickerTextBox x:Name="dateBirthDate" IsReadOnly="True"/>
+            <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
         </StackPanel>
         <StackPanel Margin="180,365,0,0" Orientation="Horizontal">
-            <Button Width="100" Margin="50 10" Click="Button_Click">Edit Password</Button>
-            <Button Width="100" Margin="50 10">Update</Button>
-            <Button Width="100" Margin="50 10">Close</Button>
+            <Button Width="100" Margin="50 10" Click="btnEdit_Click">Edit</Button>
+            <Button Width="100" Margin="50 10" Click="btnUpdate_Click">Update</Button>
+            <Button Width="100" Margin="50 10" Click="btnClose_Click">Close</Button>
         </StackPanel>
-        <StackPanel Margin="0,365,620,0">
-            <Button Width="100" Height="50" Margin="010">Close</Button>
+        <StackPanel Margin="0,365,620,1">
+            <Button Width="110" Margin="0 10" Click="BtnReturn_Click">Return HomePage</Button>
         </StackPanel>
     </Grid>
 </Window>

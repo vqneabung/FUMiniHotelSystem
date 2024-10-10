@@ -24,15 +24,16 @@ namespace WPFApp
     public partial class LoginPage : Window
     {
         public readonly IConfiguration configuration;
-        public static readonly ICustomerService customerService;
+        public readonly ICustomerService _customerService;
 
-        public LoginPage()
+        public LoginPage(ICustomerService customerService)
         {
             InitializeComponent();
             configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true, true)
                 .Build();
+            _customerService = new CustomerService();
         }
 
 
@@ -47,11 +48,14 @@ namespace WPFApp
                 if (adminPassword == txtPassword.Password)
                 {
                     UserData.Email = txtEmail.Text;
+                    AdminPage admin = new AdminPage();
+                    admin.Show();
+                    this.Close();
                 }
             }
-            else if (customerService.GetCustomerByEmail(txtEmail.Text) != null)
+            else if (_customerService.GetCustomerByEmail(txtEmail.Text) != null)
             {
-                if (customerService.GetCustomerByEmail(txtEmail.Text).Password == txtPassword.Password)
+                if (_customerService.GetCustomerByEmail(txtEmail.Text).Password == txtPassword.Password)
                 {   
                     UserData.Email = txtEmail.Text;
                     HomePage homePage = new HomePage();
