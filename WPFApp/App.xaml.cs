@@ -19,6 +19,7 @@ namespace WPFApp
         public IConfiguration? configuration; 
 
 
+
         protected override void OnStartup(StartupEventArgs e)
         {
             

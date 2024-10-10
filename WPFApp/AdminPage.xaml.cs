@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,8 @@ namespace WPFApp
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
-            BookingHistory bookingHistory = new BookingHistory();
-            bookingHistory.Show();
+            ManageCustomerPage manageCustomerPage = App.ServiceProvider.GetRequiredService<ManageCustomerPage>();
+            manageCustomerPage.Show();
             this.Close();
             
         }
