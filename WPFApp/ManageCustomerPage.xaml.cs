@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace WPFApp
 {
     /// <summary>
-    /// Interaction logic for ManageCustomer.xaml
+    /// Interaction logic for ManageCustomerPage.xaml
     /// </summary>
     public partial class ManageCustomerPage : Window
     {
