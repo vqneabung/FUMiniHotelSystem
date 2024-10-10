@@ -9,5 +9,6 @@
         public DateTime CustomerBirthday { get; set; }
         public int CustomerStatus { get; set; }
         public string Password { get; set; }
+        public virtual ICollection<BookingHistory> BookingHistories { get; set; }
     }
 }

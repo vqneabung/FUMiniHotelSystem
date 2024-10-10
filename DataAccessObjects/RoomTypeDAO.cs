@@ -10,7 +10,7 @@ namespace DataAccessObjects
 {
     public class RoomTypeDAO
     {
-        public ObservableCollection<RoomType> listRoomTypes = new ObservableCollection<RoomType>();
+        public List<RoomType> listRoomTypes = new List<RoomType>();
 
         public RoomTypeDAO()
         {
@@ -19,7 +19,7 @@ namespace DataAccessObjects
             listRoomTypes.Add(new RoomType { RoomTypeID = 3, RoomTypeName = "Suite", TypeDescription = "Suite room" });
         }
 
-        public ObservableCollection<RoomType> GetAllRoomTypes()
+        public List<RoomType> GetAllRoomTypes()
         {
             return listRoomTypes;
         }

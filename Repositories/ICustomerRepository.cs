@@ -14,7 +14,7 @@ namespace Repositories
         void UpdateCustomer(Customer customer);
         void DeleteCustomer(int customerId);
         Customer GetCustomerById(int customerId);
-        ObservableCollection<Customer> GetAllCustomers();
+        List<Customer> GetAllCustomers();
 
         Customer GetCustomerByEmail(string customerEmail);
 

@@ -11,7 +11,7 @@ namespace DataAccessObjects
     public class CustomerDAO
     {
 
-        public ObservableCollection<Customer> listCustomer = new ObservableCollection<Customer>();
+        public List<Customer> listCustomer = new List<Customer>();
 
         public CustomerDAO()
         {
@@ -136,7 +136,7 @@ namespace DataAccessObjects
             return null;
         }
 
-        public ObservableCollection<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
             return listCustomer;
 

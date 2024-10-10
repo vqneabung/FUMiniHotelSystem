@@ -14,6 +14,6 @@ namespace Services
         void UpdateRoom(Room room);
         void DeleteRoom(int id);
         Room GetRoomById(int id);
-        ObservableCollection<Room> GetAllRooms();
+        List<Room> GetAllRooms();
     }
 }

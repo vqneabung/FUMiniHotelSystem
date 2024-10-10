@@ -24,7 +24,7 @@ namespace Repositories
             RoomDAO.DeleteRoom(id);
         }
 
-        public ObservableCollection<Room> GetAllRooms()
+        public List<Room> GetAllRooms()
         {
           return RoomDAO.GetAllRooms();
         }

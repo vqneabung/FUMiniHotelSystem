@@ -16,6 +16,7 @@ namespace BussinessObjects
         public decimal RoomPricePerDate { get; set; }
         public int RoomTypeID { get; set; }
         public virtual RoomType RoomType { get; set; }
+        public virtual ICollection<BookingHistory> BookingHistories { get; set; }
 
     }
 }

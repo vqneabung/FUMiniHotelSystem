@@ -24,7 +24,7 @@ namespace Repositories
             CustomerDAO.DeleteCustomer(customerId);
         }
 
-        public ObservableCollection<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
            return CustomerDAO.GetAllCustomers();
         }

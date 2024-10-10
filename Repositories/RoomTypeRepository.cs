@@ -23,7 +23,7 @@ namespace Repositories
             RoomTypeDAO.DeleteRoomType(id);
         }
 
-        public ObservableCollection<RoomType> GetAllRoomTypes()
+        public List<RoomType> GetAllRoomTypes()
         {
             return RoomTypeDAO.GetAllRoomTypes();
         }

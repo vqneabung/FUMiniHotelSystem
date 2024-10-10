@@ -38,7 +38,7 @@ namespace Services
             return customerRepository.GetCustomerById(customerId);
         }
 
-        public ObservableCollection<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
             return customerRepository.GetAllCustomers();
         }

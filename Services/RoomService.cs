@@ -28,7 +28,7 @@ namespace Services
             roomRepository.DeleteRoom(id);
         }
 
-        public ObservableCollection<Room> GetAllRooms()
+        public List<Room> GetAllRooms()
         {
             return roomRepository.GetAllRooms();
         }

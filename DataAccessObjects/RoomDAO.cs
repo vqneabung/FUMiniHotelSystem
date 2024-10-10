@@ -6,7 +6,7 @@ namespace DataAccessObjects
 {
     public class RoomDAO
     {
-        ObservableCollection<Room> listRooms = new ObservableCollection<Room>();
+        List<Room> listRooms = new List<Room>();
 
 
         public RoomDAO()
@@ -50,7 +50,7 @@ namespace DataAccessObjects
 
         }
 
-        public ObservableCollection<Room> GetAllRooms()
+        public List<Room> GetAllRooms()
         {
             return listRooms;
         }
