@@ -31,7 +31,7 @@
                     </StackPanel>
                 </Label>
                 <TextBox x:Name="txtTelephone" IsReadOnly="True"/>
-                <Label Target="{Binding ElementName=dateBirthDate}" >
+                <Label Target="{Binding ElementName=txtBirthday}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                         <AccessText Text="Birthday"/>
@@ -40,7 +40,7 @@
                 <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="500">
-                <DataGrid Height="100" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged"/>
+                <DataGrid Height="405" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,596,0,10" Orientation="Horizontal">

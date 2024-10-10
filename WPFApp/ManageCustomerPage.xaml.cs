@@ -84,6 +84,7 @@ namespace WPFApp
                 }
 
                 _customerService.UpdateCustomer(customer);
+                LoadCustomer();
 
                 MessageBox.Show("Update successfully!");
             } else

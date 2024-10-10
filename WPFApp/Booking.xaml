@@ -5,8 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="Booking" Height="450" Width="800">
-    <Grid>
-        
+        Title="Booking" Height="683" Width="800">
+    <Grid Margin="0,0,0,42">
+        <StackPanel Margin="0,0,0,29">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="20 0" Width="366">
+                    <Label Target="{Binding ElementName=txtEmail}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Email"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtEmail" IsReadOnly="True"/>
+                    <Label Target="{Binding ElementName=txtFullName}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Full Name"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtFullName" IsReadOnly="True"/>
+                    <Label Target="{Binding ElementName=txtTelephone}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Telephone"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtTelephone" IsReadOnly="True"/>
+                    <Label Target="{Binding ElementName=txtBirthday}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Birthday"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
+                </StackPanel>
+
+                <StackPanel Width="356" Height="200">
+                    <Label Target="{Binding ElementName=cboRoomType}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Room Type"/>
+                        </StackPanel>
+                    </Label>
+                    <ComboBox Name="cboRoomtype"/>
+                    <Label Target="{Binding ElementName=txtRoomType}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Room"/>
+                        </StackPanel>
+                    </Label>
+                    <ComboBox Name="cboRoom"/>
+                    <Label Target="{Binding ElementName=txtStatus}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Status"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtStatus" IsReadOnly="True"/>
+                    <Label Target="{Binding ElementName=txtNumberPeople}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                            <AccessText Text="Number of People"/>
+                        </StackPanel>
+                    </Label>
+                    <TextBox x:Name="txtNumberPeople"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="20 10" Height="500">
+                <DataGrid Height="404" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Margin="0,596,0,-23" Orientation="Horizontal">
+            <Button Width="101" Margin="90 10" Click="btnEdit_Click">Find Customer</Button>
+            <Button Width="75" Margin="70 10" Click="btnUpdate_Click">Booking</Button>
+            <Button Width="132" Margin="70 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
+        </StackPanel>
     </Grid>
 </Window>

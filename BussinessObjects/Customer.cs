@@ -1,4 +1,7 @@
-﻿namespace BussinessObjects
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace BussinessObjects
 {
     public class Customer()
     {
