@@ -15,5 +15,7 @@ namespace Services
         void DeleteRoom(int id);
         Room GetRoomById(int id);
         List<Room> GetAllRooms();
+
+        public List<Room> GetAllRoomsIncludeRoomType();
     }
 }
