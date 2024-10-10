@@ -11,7 +11,7 @@ namespace Repositories
 {
     public class RoomTypeRepository : IRoomTypeRepository
     {   
-        RoomTypeDAO RoomTypeDAO = new RoomTypeDAO();
+        public static RoomTypeDAO RoomTypeDAO = new RoomTypeDAO();
 
         public void AddRoomType(RoomType roomType)
         {

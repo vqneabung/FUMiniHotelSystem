@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,8 +31,16 @@ namespace Services
 
         public List<Room> GetAllRooms()
         {
+    
             return roomRepository.GetAllRooms();
         }
+
+        public List<Room> GetAllRoomsIncludeRoomType()
+        {
+            return roomRepository.GetAllRoomsIncludeRoomType();
+        }
+
+
 
         public Room GetRoomById(int id)
         {

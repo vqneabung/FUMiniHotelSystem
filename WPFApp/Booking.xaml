@@ -72,12 +72,12 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20 10" Height="500">
-                <DataGrid Height="404" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
+                <DataGrid Height="363" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Margin="0,596,0,-23" Orientation="Horizontal">
-            <Button Width="101" Margin="90 10" Click="btnEdit_Click">Find Customer</Button>
-            <Button Width="75" Margin="70 10" Click="btnUpdate_Click">Booking</Button>
+        <StackPanel Margin="0,575,0,-23" Orientation="Horizontal">
+            <Button Width="101" Margin="90 10" Click="btnFindCustomer_Click">Find Customer</Button>
+            <Button Width="75" Margin="70 10" Click="btnBooking_Click">Booking</Button>
             <Button Width="132" Margin="70 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
         </StackPanel>
     </Grid>

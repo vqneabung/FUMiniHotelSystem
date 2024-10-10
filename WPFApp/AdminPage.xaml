@@ -17,7 +17,7 @@
                 <Button Height="30" Width="120" Margin="20 0" Click="btnProfile_Click" Content="Manage User"/>
                 <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoom_Click" Content="Manage Room"/>
                 <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoomType_Click" Content="Manage Room Type"/>
-                <Button Height="30" Width="185" Margin="20 0" Click="btnBookingReservationHistory_Click" Content="Booking Reservation History"/>
+                <Button Height="30" Width="185" Margin="20 0" Click="btnBookingReservation" Content="Booking Reservation"/>
             </StackPanel>
         </StackPanel>
     </Grid>

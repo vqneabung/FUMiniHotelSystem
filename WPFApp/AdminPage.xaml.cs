@@ -43,9 +43,11 @@ namespace WPFApp
 
         }
 
-        private void btnBookingReservationHistory_Click(object sender, RoutedEventArgs e)
+        private void btnBookingReservation(object sender, RoutedEventArgs e)
         {
-
+            Booking booking = App.ServiceProvider.GetRequiredService<Booking>();
+            booking.Show();
+            this.Close();
         }
     }
 }

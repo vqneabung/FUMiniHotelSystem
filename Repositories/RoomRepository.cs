@@ -12,7 +12,7 @@ namespace Repositories
     
     public class RoomRepository : IRoomRepository
     {
-        RoomDAO RoomDAO = new RoomDAO();
+        public static RoomDAO RoomDAO = new RoomDAO();
 
         public void AddRoom(Room room)
         {
@@ -26,7 +26,29 @@ namespace Repositories
 
         public List<Room> GetAllRooms()
         {
-          return RoomDAO.GetAllRooms();
+             List<Room> IncludeRoomType()
+            {
+                
+                for (int i = 0; i < RoomDAO.GetAllRooms().Count; i++)
+                {
+                    RoomDAO.GetAllRooms()[i].RoomType = RoomTypeRepository.RoomTypeDAO.GetRoomTypeByID(RoomDAO.GetAllRooms()[i].RoomTypeID);
+                }
+
+                return RoomDAO.GetAllRooms();
+            }
+
+            return RoomDAO.GetAllRooms();
+        }
+
+        public List<Room> GetAllRoomsIncludeRoomType()
+        {
+
+            for (int i = 0; i < RoomDAO.GetAllRooms().Count; i++)
+            {
+                RoomDAO.GetAllRooms()[i].RoomType = RoomTypeRepository.RoomTypeDAO.GetRoomTypeByID(RoomDAO.GetAllRooms()[i].RoomTypeID);
+            }
+
+            return RoomDAO.GetAllRooms();
         }
 
         public Room GetRoomById(int id)
