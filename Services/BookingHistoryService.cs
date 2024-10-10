@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    internal class BookingHistoryService : IBookingHistoryService
+    public class BookingHistoryService : IBookingHistoryService
     {
         public readonly IBookingHistoryRepository bookingHistoryRepository;
 

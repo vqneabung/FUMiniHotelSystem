@@ -42,8 +42,9 @@ namespace WPFApp
                 services.AddTransient<BookingHistory>();
                 services.AddTransient<ManageRoomPage>();
                 services.AddTransient<ManageRoomTypePage>();
+                services.AddTransient<ManageCustomerPage>();
 
-                services.AddSingleton<IConfiguration>(configuration);
+            services.AddSingleton<IConfiguration>(configuration);
 
                 services.AddScoped<ICustomerRepository, CustomerRepository>();
                 services.AddScoped<ICustomerService, CustomerService>();
@@ -51,6 +52,8 @@ namespace WPFApp
                 services.AddScoped<IRoomService, RoomService>();
                 services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
                 services.AddScoped<IRoomTypeService, RoomTypeService>();
+                services.AddScoped<IBookingHistoryService, BookingHistoryService>();
+                services.AddScoped<IBookingHistoryRepository, BookingHistoryRepository>();
 
 
 

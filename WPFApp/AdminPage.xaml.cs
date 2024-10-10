@@ -23,5 +23,28 @@ namespace WPFApp
         {
             InitializeComponent();
         }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            BookingHistory bookingHistory = new BookingHistory();
+            bookingHistory.Show();
+            this.Close();
+            
+        }
+
+        private void btnManageRoom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnManageRoomType_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBookingReservationHistory_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
