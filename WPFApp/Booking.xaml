@@ -16,29 +16,29 @@
                             <AccessText Text="Email"/>
                         </StackPanel>
                     </Label>
-                    <TextBox x:Name="txtEmail" IsReadOnly="True"/>
+                    <TextBox x:Name="txtEmail"/>
                     <Label Target="{Binding ElementName=txtFullName}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                             <AccessText Text="Full Name"/>
                         </StackPanel>
                     </Label>
-                    <TextBox x:Name="txtFullName" IsReadOnly="True"/>
+                    <TextBox x:Name="txtFullName" />
                     <Label Target="{Binding ElementName=txtTelephone}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                             <AccessText Text="Telephone"/>
                         </StackPanel>
                     </Label>
-                    <TextBox x:Name="txtTelephone" IsReadOnly="True"/>
+                    <TextBox x:Name="txtTelephone" />
                     <Label Target="{Binding ElementName=txtBirthday}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                             <AccessText Text="Birthday"/>
                         </StackPanel>
                     </Label>
-                    <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
-                    <Button Width="102" Margin="90 10" Click="btnFindCustomer_Click" Height="49">Find Customer</Button>
+                    <TextBox x:Name="txtBirthday"/>
+                    <Button Width="174" Margin="90 10" Click="btnFindCustomer_Click" Height="49">Find Customer By Email</Button>
                 </StackPanel>
 
                 <StackPanel Width="356" Height="295">
@@ -78,7 +78,7 @@
                                     <AccessText Text="Start Day"/>
                                 </StackPanel>
                             </Label>
-                            <TextBox x:Name="txtStartDay"/>
+                            <TextBox x:Name="txtStartDay" />
                         </StackPanel>
                         <StackPanel Width="154" Margin=" 55 0 0 0">
                             <Label Target="{Binding ElementName=txtEndDay}" >
@@ -87,11 +87,19 @@
                                     <AccessText Text="End Day"/>
                                 </StackPanel>
                             </Label>
-                            <TextBox x:Name="txtEndDay"/>
+                            <TextBox x:Name="txtEndDay" />
                         </StackPanel>
                     </StackPanel>
-                    <Label Name="lbRoomPrice" Content="Room Price: 0Đ"></Label>
-                    <Label Name="lbTotalPrice" Content="Price: 0Đ"></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="144">
+                            <Label Name="lbRoomPrice" Content="Room Price: 0Đ"></Label>
+                            <Label Name="lbTotalPrice" Content="Price: 0Đ"></Label>
+                        </StackPanel>
+                        <StackPanel Width="213">
+                            <Button Width="139" Margin="10 10" Click="btnCalculatePrice_Click" Height="33">Calculate Price</Button>
+                        </StackPanel>
+                    </StackPanel>
+
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20 10" Height="500">
@@ -99,8 +107,9 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,575,0,-23" Orientation="Horizontal">
-            <Button Width="133" Margin="150 10" Click="btnBooking_Click">Booking</Button>
-            <Button Width="132" Margin="70 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
+            <Button Width="133" Margin="30 10" Click="btnBooking_Click">Booking</Button>
+            <Button Width="133" Margin="120 10" Click="btnCheckOut_Click">Check Out</Button>
+            <Button Width="132" Margin="60 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
         </StackPanel>
     </Grid>
 </Window>

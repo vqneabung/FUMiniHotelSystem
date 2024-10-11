@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WPFApp
 {
     /// <summary>
-    /// Interaction logic for BookingHistory.xaml
+    /// Interaction logic for BookingHistoryPage.xaml
     /// </summary>
-    public partial class BookingHistory : Window
+    public partial class BookingHistoryPage : Window
     {
-        public BookingHistory()
+        public BookingHistoryPage()
         {
             InitializeComponent();
         }

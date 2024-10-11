@@ -7,6 +7,61 @@
         mc:Ignorable="d"
         Title="ManageRoomPage" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="0,0,0,69">
+            <StackPanel Margin="20 0">
+                <Label Target="{Binding ElementName=txtRoomNumber}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Room Number"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtRoomNumber" />
+                <Label Target="{Binding ElementName=cbRoomType}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Room Type"/>
+                    </StackPanel>
+                </Label>
+                <ComboBox x:Name="cbRoomType" />
+                <Label Target="{Binding ElementName=txtMaxCapacity}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Max Capacity"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtMaxCapacity"/>
+                <Label Target="{Binding ElementName=txtDescribe}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Describe"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtDescribe"/>
+                <Label Target="{Binding ElementName=txtStatus}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Status"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtStatus"/>
+            </StackPanel>
+            <StackPanel Margin="20 10" Height="127">
+                <DataGrid Height="120" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Margin="0,360,0,10" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Width="75" Margin="50 10" Click="btnUpdate_Click">Update</Button>
+            <Button Width="75" Margin="50 10" Click="btnCreate_Click">Create</Button>
+            <Button Width="75" Margin="50 10" Click="btnDelete_Click">Delete</Button>
+            <Button Width="132" Margin="40 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
+        </StackPanel>
     </Grid>
 </Window>

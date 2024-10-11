@@ -40,7 +40,7 @@ namespace WPFApp
             services.AddTransient<HomePage>();
             services.AddTransient<AdminPage>();
             services.AddTransient<ProfilePage>();
-            services.AddTransient<BookingHistory>();
+            services.AddTransient<BookingHistoryPage>();
             services.AddTransient<ManageRoomPage>();
             services.AddTransient<ManageRoomTypePage>();
             services.AddTransient<ManageCustomerPage>();

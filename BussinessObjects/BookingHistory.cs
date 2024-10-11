@@ -13,8 +13,7 @@ namespace BussinessObjects
         public int RoomID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public int NumberOfGuests { get; set; }
-        public int NumberOfRooms { get; set; }
+        public int NumberOfPeople { get; set; }
         public int BookingStatus { get; set; }
         public double TotalPrice { get; set; }
         public virtual Customer Customer { get; set; }

@@ -50,17 +50,6 @@ namespace WPFApp
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtFullName.IsReadOnly == true)
-            {
-                txtFullName.IsReadOnly = false; txtTelephone.IsReadOnly = false; txtBirthday.IsReadOnly = false;
-            }
-            else
-            {
-                txtFullName.IsReadOnly = true; txtTelephone.IsReadOnly = true; txtBirthday.IsReadOnly = true;
-            }
-        }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -95,12 +84,49 @@ namespace WPFApp
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+            var createCustomer = new Customer
+            {
+                CustomerFullName = txtFullName.Text,
+                EmailAddress = txtEmail.Text,
+                Telephone = txtTelephone.Text,
+                CustomerBirthday = DateTime.ParseExact(txtBirthday.Text, "d/M/yyyy", null),
+            };
 
+            if (txtFullName.Text != "" && txtTelephone.Text != "" && txtBirthday.Text != "" || txtEmail.Text != "")
+            {
+                if (txtEmail.Text == _customerService.GetCustomerByEmail(txtEmail.Text).EmailAddress)
+                {
+                    MessageBox.Show("Email already exists!");
+                    return;
+                }
+                _customerService.AddCustomer(createCustomer);
+                LoadCustomer();
+                MessageBox.Show("Create successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please fill in all fields");
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (txtFullName.Text != "" && txtTelephone.Text != "" && txtBirthday.Text != "")
+            {
+                var customer = _customerService.GetCustomerByEmail(txtEmail.Text);
+                if (customer == null)
+                {
+                    MessageBox.Show("Customer not found");
+                    return;
+                }
+                _customerService.DeleteCustomer(customer.CustomerID);
+                LoadCustomer();
+                MessageBox.Show("Delete successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please select customer!");
+            }
         }
 
         private void btnReturnToAdmin_Click(object sender, RoutedEventArgs e)

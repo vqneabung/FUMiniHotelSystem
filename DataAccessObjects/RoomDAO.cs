@@ -44,9 +44,21 @@ namespace DataAccessObjects
                 RoomTypeID = 2
             };
 
+            Room room4 = new Room
+            {
+                RoomID = 4,
+                RoomNumber = "202",
+                RoomDescription = "Room 202",
+                RoomMaxCapacity = 4,
+                RoomStatus = 0,
+                RoomPricePerDate = 200,
+                RoomTypeID = 2
+            };
+
             listRooms.Add(room1);
             listRooms.Add(room2);
             listRooms.Add(room3);
+            listRooms.Add(room4);
 
         }
 

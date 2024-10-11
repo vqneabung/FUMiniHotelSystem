@@ -16,39 +16,38 @@
                         <AccessText Text="Email"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtEmail" IsReadOnly="True"/>
+                <TextBox x:Name="txtEmail" />
                 <Label Target="{Binding ElementName=txtFullName}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                         <AccessText Text="Full Name"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtFullName" IsReadOnly="True"/>
+                <TextBox x:Name="txtFullName" />
                 <Label Target="{Binding ElementName=txtTelephone}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                         <AccessText Text="Telephone"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtTelephone" IsReadOnly="True"/>
+                <TextBox x:Name="txtTelephone" />
                 <Label Target="{Binding ElementName=txtBirthday}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                         <AccessText Text="Birthday"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
+                <TextBox x:Name="txtBirthday"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="500">
                 <DataGrid Height="405" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,596,0,10" Orientation="Horizontal">
-            <Button Width="75" Margin="40 10" Click="btnEdit_Click">Edit</Button>
-            <Button Width="75" Margin="40 10" Click="btnUpdate_Click">Update</Button>
-            <Button Width="75" Margin="40 10" Click="btnCreate_Click">Create</Button>
-            <Button Width="75" Margin="40 10" Click="btnDelete_Click">Delete</Button>
-            <Button Width="132" Margin="30 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
+            <Button Width="75" Margin="50 10" Click="btnUpdate_Click">Update</Button>
+            <Button Width="75" Margin="50 10" Click="btnCreate_Click">Create</Button>
+            <Button Width="75" Margin="50 10" Click="btnDelete_Click">Delete</Button>
+            <Button Width="132" Margin="40 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
         </StackPanel>
     </Grid>
 </Window>
