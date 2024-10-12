@@ -35,11 +35,16 @@ namespace WPFApp
 
         private void btnManageRoom_Click(object sender, RoutedEventArgs e)
         {
-
+            ManageRoomPage manageRoomPage = App.ServiceProvider.GetRequiredService<ManageRoomPage>();
+            manageRoomPage.Show();
+            this.Close();
         }
 
         private void btnManageRoomType_Click(object sender, RoutedEventArgs e)
         {
+            ManageRoomTypePage manageRoomTypePage = App.ServiceProvider.GetRequiredService<ManageRoomTypePage>();
+            manageRoomTypePage.Show();
+            this.Close();
 
         }
 

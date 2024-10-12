@@ -55,6 +55,13 @@ namespace WPFApp
                 txtTotalPrice.Text = bookingHistory.TotalPrice.ToString();
             }
         }
+
+        private void btnReturnToHomePage_Click(object sender, RoutedEventArgs e)
+        {
+            HomePage homePage = new HomePage();
+            homePage.Show();
+            this.Close();
+        }
     }
     
 }
