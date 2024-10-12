@@ -5,20 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="AdminPage" Height="450" Width="800">
+        Title="AdminPage" Height="450" Width="1035">
     <Grid>
-        <StackPanel Margin="50,50,50,10">
+        <StackPanel Margin="0,50,0,10">
             <StackPanel Margin="50" Height="100">
                 <TextBlock FontSize="75" HorizontalAlignment="Center">
              Admin
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <StackPanel Height="96" Width="701" Orientation="Horizontal">
-                    <Button Height="30" Width="120" Margin="20 0" Click="btnProfile_Click" Content="Manage User"/>
-                    <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoom_Click" Content="Manage Room"/>
-                    <Button Height="30" Width="120" Margin="20 0" Click="btnManageRoomType_Click" Content="Manage Room Type"/>
-                    <Button Height="30" Width="185" Margin="20 0" Click="btnBookingReservation" Content="Booking Reservation"/>
+                <StackPanel Height="96" Width="780" Orientation="Horizontal">
+                    <Button Height="30" Width="120" Margin="5 0" Click="btnProfile_Click" Content="Manage User"/>
+                    <Button Height="30" Width="120" Margin="5 0" Click="btnManageRoom_Click" Content="Manage Room"/>
+                    <Button Height="30" Width="120" Margin="5 0" Click="btnManageRoomType_Click" Content="Manage Room Type"/>
+                    <Button Height="30" Width="185" Margin="5 0" Click="btnBookingReservation" Content="Booking Reservation"/>
+                    <Button Height="30" Width="185" Margin="5 0" Click="btnBookingHistory" Content="Booking History"/>
                 </StackPanel>
                 <StackPanel>
                 <Button Height="30" Width="185" Margin="20 0" Click="btnLogout" Content="Log Out"/>

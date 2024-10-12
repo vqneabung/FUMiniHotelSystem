@@ -123,6 +123,7 @@ namespace WPFApp
             var roomType = dgRoomType.SelectedItem as RoomType;
             if (roomType != null)
             {
+                txtRoomTypeID.Text = roomType.RoomTypeID.ToString();
                 txtRoomTypeName.Text = roomType.RoomTypeName;
                 txtTypeDescription.Text = roomType.TypeDescription;
                 txtTypeNote.Text = roomType.TypenNote;

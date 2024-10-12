@@ -12,43 +12,50 @@ namespace Repositories
     
     public class RoomRepository : IRoomRepository
     {
-        public static RoomDAO RoomDAO = new RoomDAO();
+        public RoomDAO _roomDAO;
+        public RoomTypeDAO _roomTypeDAO;
+
+        public RoomRepository(RoomDAO roomDAO, RoomTypeDAO roomTypeDAO)
+        {
+            _roomDAO = roomDAO;
+            _roomTypeDAO = roomTypeDAO;
+        }
 
         public void AddRoom(Room room)
         {
-            RoomDAO.AddRoom(room);
+            _roomDAO.AddRoom(room);
         }
 
         public void DeleteRoom(int id)
         {
-            RoomDAO.DeleteRoom(id);
+            _roomDAO.DeleteRoom(id);
         }
 
         public List<Room> GetAllRooms()
         {
-            for (int i = 0; i < RoomDAO.GetAllRooms().Count; i++)
+            for (int i = 0; i < _roomDAO.GetAllRooms().Count; i++)
             {
-                RoomDAO.GetAllRooms()[i].RoomType = RoomTypeRepository.RoomTypeDAO.GetRoomTypeByID(RoomDAO.GetAllRooms()[i].RoomTypeID);
+                _roomDAO.GetAllRooms()[i].RoomType = _roomTypeDAO.GetRoomTypeByID(_roomDAO.GetAllRooms()[i].RoomTypeID);
             }
 
-            return RoomDAO.GetAllRooms();
+            return _roomDAO.GetAllRooms();
 
         }
 
 
         public Room GetRoomById(int id)
         {
-            return RoomDAO.GetRoomById(id);
+            return _roomDAO.GetRoomById(id);
         }
 
         public void UpdateRoom(Room room)
         {
-            RoomDAO.UpdateRoom(room);
+            _roomDAO.UpdateRoom(room);
         }
 
         public Room GetRoomByRoomNumber(string roomNumber)
         {
-            return RoomDAO.GetRoomByRoomNumber(roomNumber);
+            return _roomDAO.GetRoomByRoomNumber(roomNumber);
         }
     }
 }

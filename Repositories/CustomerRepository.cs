@@ -12,36 +12,41 @@ namespace Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public static CustomerDAO CustomerDAO = new CustomerDAO();
+        public CustomerDAO _customerDAO;
+
+        public CustomerRepository(CustomerDAO customerDAO)
+        {
+            _customerDAO = customerDAO;
+        }
 
         public void AddCustomer(Customer customer)
         {
-            CustomerDAO.AddCustomer(customer);
+            _customerDAO.AddCustomer(customer);
         }
 
         public void DeleteCustomer(int customerId)
         {
-            CustomerDAO.DeleteCustomer(customerId);
+            _customerDAO.DeleteCustomer(customerId);
         }
 
         public List<Customer> GetAllCustomers()
         {
-           return CustomerDAO.GetAllCustomers();
+           return _customerDAO.GetAllCustomers();
         }
 
         public Customer GetCustomerById(int customerId)
         {
-            return CustomerDAO.GetCustomerById(customerId);
+            return _customerDAO.GetCustomerById(customerId);
         }
 
         public void UpdateCustomer(Customer customer)
         {
-            CustomerDAO.UpdateCustomer(customer);
+            _customerDAO.UpdateCustomer(customer);
         }
 
         public Customer GetCustomerByEmail(string customerEmail)
         {
-            return CustomerDAO.GetCustomerByEmail(customerEmail);
+            return _customerDAO.GetCustomerByEmail(customerEmail);
         }
     }
 }

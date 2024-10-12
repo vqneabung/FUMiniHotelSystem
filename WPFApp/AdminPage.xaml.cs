@@ -61,5 +61,12 @@ namespace WPFApp
             login.Show();
             this.Close();
         }
+
+        private void btnBookingHistory(object sender, RoutedEventArgs e)
+        {
+            BookingHistoryPage bookingHistoryPage = App.ServiceProvider.GetRequiredService<BookingHistoryPage>();
+            bookingHistoryPage.Show();
+            this.Close();
+        }
     }
 }

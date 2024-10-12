@@ -11,36 +11,36 @@ namespace Services
 {
     public class RoomTypeService : IRoomTypeService
     {
-        private readonly IRoomTypeRepository roomTypeRepository;
+        private readonly IRoomTypeRepository _roomTypeRepository;
 
-        public RoomTypeService()
+        public RoomTypeService(IRoomTypeRepository roomTypeRepository)
         {
-            roomTypeRepository = new RoomTypeRepository();
+            _roomTypeRepository = roomTypeRepository;
         } 
 
         public void AddRoomType(RoomType roomType)
         {
-            roomTypeRepository.AddRoomType(roomType);
+            _roomTypeRepository.AddRoomType(roomType);
         }
 
         public void DeleteRoomType(int id)
         {
-            roomTypeRepository.DeleteRoomType(id);
+            _roomTypeRepository.DeleteRoomType(id);
         }
 
         public List<RoomType> GetAllRoomTypes()
         {
-            return roomTypeRepository.GetAllRoomTypes(); 
+            return _roomTypeRepository.GetAllRoomTypes(); 
         }
 
         public RoomType GetRoomTypeById(int roomTypeId)
         {
-            return roomTypeRepository.GetRoomTypeById(roomTypeId);
+            return _roomTypeRepository.GetRoomTypeById(roomTypeId);
         }
 
         public void UpdateRoomType(RoomType roomType)
         {
-            roomTypeRepository.UpdateRoomType(roomType);
+            _roomTypeRepository.UpdateRoomType(roomType);
         }
     }
 }

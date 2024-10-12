@@ -10,37 +10,37 @@ namespace Services
 {
     public class BookingHistoryService : IBookingHistoryService
     {
-        public readonly IBookingHistoryRepository bookingHistoryRepository;
+        public readonly IBookingHistoryRepository _bookingHistoryRepository;
 
-        public BookingHistoryService()
+        public BookingHistoryService(IBookingHistoryRepository bookingHistoryRepository)
         {
-            bookingHistoryRepository = new BookingHistoryRepository();
+            _bookingHistoryRepository = bookingHistoryRepository;
         }
 
         public void AddBookingHistory(BookingHistory bookingHistory)
         {
-            bookingHistoryRepository.AddBookingHistory(bookingHistory);
+            _bookingHistoryRepository.AddBookingHistory(bookingHistory);
 
         }
 
         public void DeleteBookingHistory(int id)
         {
-            bookingHistoryRepository.DeleteBookingHistory(id);
+            _bookingHistoryRepository.DeleteBookingHistory(id);
         }
 
         public List<BookingHistory> GetAllBookingHistories()
         {
-            return bookingHistoryRepository.GetAllBookingHistories();
+            return _bookingHistoryRepository.GetAllBookingHistories();
         }
 
         public BookingHistory GetBookingHistoryById(int bookingHistoryId)
         {
-            return bookingHistoryRepository.GetBookingHistoryById(bookingHistoryId);
+            return _bookingHistoryRepository.GetBookingHistoryById(bookingHistoryId);
         }
 
         public void UpdateBookingHistory(BookingHistory bookingHistory)
         {
-            bookingHistoryRepository.UpdateBookingHistory(bookingHistory);
+            _bookingHistoryRepository.UpdateBookingHistory(bookingHistory);
         }
     }
 }

@@ -12,43 +12,43 @@ namespace Services
 {
     public class RoomService : IRoomService
     {
-        private readonly IRoomRepository roomRepository;
+        private readonly IRoomRepository _roomRepository;
 
-        public RoomService()
+        public RoomService(IRoomRepository roomRepository)
         {
-            roomRepository = new RoomRepository();
+            _roomRepository = roomRepository;
         }
 
         public void AddRoom(Room room)
         {
-            roomRepository.AddRoom(room);
+            _roomRepository.AddRoom(room);
         }
 
         public void DeleteRoom(int id)
         {
-            roomRepository.DeleteRoom(id);
+            _roomRepository.DeleteRoom(id);
         }
 
         public List<Room> GetAllRooms()
         {
     
-            return roomRepository.GetAllRooms();
+            return _roomRepository.GetAllRooms();
         }
 
         public Room GetRoomByRoomNumber(string roomNumber)
         {
-            return roomRepository.GetRoomByRoomNumber(roomNumber);
+            return _roomRepository.GetRoomByRoomNumber(roomNumber);
         }
 
 
         public Room GetRoomById(int id)
         {
-            return roomRepository.GetRoomById(id);
+            return _roomRepository.GetRoomById(id);
         }
 
         public void UpdateRoom(Room room)
         {
-            roomRepository.UpdateRoom(room);
+            _roomRepository.UpdateRoom(room);
         }
     }
 }

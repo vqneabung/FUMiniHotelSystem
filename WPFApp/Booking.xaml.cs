@@ -90,6 +90,20 @@ namespace WPFApp
                 }
                 var room = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString());
                 var customer = _customerService.GetCustomerByEmail(txtEmail.Text);
+                if (customer == null)
+                {
+                    var newCustomer = new Customer
+                    {
+                        EmailAddress = txtEmail.Text,
+                        CustomerFullName = txtFullName.Text,
+                        Telephone = txtTelephone.Text,
+                        CustomerBirthday = DateTime.ParseExact(txtBirthday.Text, "d/M/yyyy", null),
+                        CustomerStatus = 1,
+                        Password = "123456"
+                    };
+                    _customerService.AddCustomer(newCustomer);
+                    customer = _customerService.GetCustomerByEmail(txtEmail.Text);
+                }   
                 var booking = new BookingHistory
                 {
                     RoomID = room.RoomID,

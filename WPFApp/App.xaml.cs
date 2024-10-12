@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DataAccessObjects;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repositories;
 using Services;
@@ -49,14 +50,19 @@ namespace WPFApp
 
             services.AddSingleton<IConfiguration>(configuration);
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
-            services.AddScoped<IRoomTypeService, RoomTypeService>();
-            services.AddScoped<IBookingHistoryService, BookingHistoryService>();
-            services.AddScoped<IBookingHistoryRepository, BookingHistoryRepository>();
+            services.AddSingleton<BookingHistoryDAO>();
+            services.AddSingleton<CustomerDAO>();
+            services.AddSingleton<RoomDAO>();
+            services.AddSingleton<RoomTypeDAO>();
+
+            services.AddSingleton<IRoomRepository, RoomRepository>();
+            services.AddSingleton<IRoomService, RoomService>();
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
+            services.AddSingleton<IRoomTypeService, RoomTypeService>();
+            services.AddSingleton<IBookingHistoryService, BookingHistoryService>();
+            services.AddSingleton<IBookingHistoryRepository, BookingHistoryRepository>();
 
 
 

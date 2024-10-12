@@ -12,10 +12,10 @@
                 <Label Target="{Binding ElementName=txtRoomTypeID}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Room Type Name"/>
+                        <AccessText Text="Room Type ID"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtRoomTypeID" />
+                <TextBox x:Name="txtRoomTypeID" IsReadOnly="True"/>
                 <Label Target="{Binding ElementName=txtRoomTypeName}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>

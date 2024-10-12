@@ -10,37 +10,47 @@ namespace Repositories
 {
     public class BookingHistoryRepository : IBookingHistoryRepository
     {
-        BookingHistoryDAO BookingHistoryDAO = new BookingHistoryDAO();
+        public BookingHistoryDAO _bookingHistoryDAO;
+        public CustomerDAO _customerDAO;
+        public RoomDAO _roomDAO;
+
+        public BookingHistoryRepository(BookingHistoryDAO bookingHistoryDAO,CustomerDAO customerDAO, RoomDAO roomDAO)
+        {
+            _bookingHistoryDAO = bookingHistoryDAO;
+            _customerDAO = customerDAO;
+            _roomDAO = roomDAO;
+        }
+
 
         public void AddBookingHistory(BookingHistory bookingHistory)
         {
-            BookingHistoryDAO.AddBookingHistory(bookingHistory);
+            _bookingHistoryDAO.AddBookingHistory(bookingHistory);
         }
 
         public void DeleteBookingHistory(int id)
         {
-            BookingHistoryDAO.DeleteBookingHistory(id);
+            _bookingHistoryDAO.DeleteBookingHistory(id);
         }
 
         public List<BookingHistory> GetAllBookingHistories()
         {
-            foreach (var bookingHistory in BookingHistoryDAO.GetAllBookingHistories())
+            foreach (var bookingHistory in _bookingHistoryDAO.GetAllBookingHistories())
             {
-                bookingHistory.Customer = CustomerRepository.CustomerDAO.GetCustomerById(bookingHistory.CustomerID);
-                bookingHistory.Room = RoomRepository.RoomDAO.GetRoomById(bookingHistory.RoomID);
+                bookingHistory.Customer = _customerDAO.GetCustomerById(bookingHistory.CustomerID);
+                bookingHistory.Room = _roomDAO.GetRoomById(bookingHistory.RoomID);
             }
 
-            return BookingHistoryDAO.GetAllBookingHistories();
+            return _bookingHistoryDAO.GetAllBookingHistories();
         }
 
         public BookingHistory GetBookingHistoryById(int bookingHistoryId)
         {
-            return BookingHistoryDAO.GetBookingHistoryById(bookingHistoryId);
+            return _bookingHistoryDAO.GetBookingHistoryById(bookingHistoryId);
         }
 
         public void UpdateBookingHistory(BookingHistory bookingHistory)
         {
-            BookingHistoryDAO.UpdateBookingHistory(bookingHistory);
+            _bookingHistoryDAO.UpdateBookingHistory(bookingHistory);
         }
     }
 }

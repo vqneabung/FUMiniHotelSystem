@@ -10,32 +10,37 @@ using System.Threading.Tasks;
 namespace Repositories
 {
     public class RoomTypeRepository : IRoomTypeRepository
-    {   
-        public static RoomTypeDAO RoomTypeDAO = new RoomTypeDAO();
+    {
+        public RoomTypeDAO _roomTypeDAO;
+
+        public RoomTypeRepository(RoomTypeDAO roomTypeDAO)
+        {
+            _roomTypeDAO = roomTypeDAO;
+        }
 
         public void AddRoomType(RoomType roomType)
         {
-            RoomTypeDAO.AddRoomType(roomType);
+            _roomTypeDAO.AddRoomType(roomType);
         }
 
         public void DeleteRoomType(int id)
         {
-            RoomTypeDAO.DeleteRoomType(id);
+            _roomTypeDAO.DeleteRoomType(id);
         }
 
         public List<RoomType> GetAllRoomTypes()
         {
-            return RoomTypeDAO.GetAllRoomTypes();
+            return _roomTypeDAO.GetAllRoomTypes();
         }
 
         public RoomType GetRoomTypeById(int roomTypeId)
         {
-            return RoomTypeDAO.GetRoomTypeByID(roomTypeId); 
+            return _roomTypeDAO.GetRoomTypeByID(roomTypeId); 
         }
 
         public void UpdateRoomType(RoomType roomType)
         {
-            RoomTypeDAO.UpdateRoomType(roomType);
+            _roomTypeDAO.UpdateRoomType(roomType);
         }
     }
 }

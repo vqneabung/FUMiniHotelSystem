@@ -90,11 +90,12 @@ namespace WPFApp
                 EmailAddress = txtEmail.Text,
                 Telephone = txtTelephone.Text,
                 CustomerBirthday = DateTime.ParseExact(txtBirthday.Text, "d/M/yyyy", null),
+                CustomerStatus = 1
             };
 
             if (txtFullName.Text != "" && txtTelephone.Text != "" && txtBirthday.Text != "" || txtEmail.Text != "")
             {
-                if (txtEmail.Text == _customerService.GetCustomerByEmail(txtEmail.Text).EmailAddress)
+                if (txtEmail.Text == _customerService.GetCustomerByEmail(txtEmail.Text)?.EmailAddress)
                 {
                     MessageBox.Show("Email already exists!");
                     return;

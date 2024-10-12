@@ -70,6 +70,7 @@ namespace WPFApp
                 txtCheckInDate.Text = bookingHistory.CheckInDate.ToString("d/M/yyyy");
                 txtCheckOutDate.Text = bookingHistory.CheckOutDate.ToString("d/M/yyyy");
                 txtBookingStatus.Text = bookingHistory.BookingStatus.ToString();
+                txtNumberOfPeople.Text = bookingHistory.NumberOfPeople.ToString();
                 txtTotalPrice.Text = bookingHistory.TotalPrice.ToString();
             }
         }

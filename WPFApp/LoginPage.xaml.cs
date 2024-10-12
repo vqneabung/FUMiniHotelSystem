@@ -33,7 +33,7 @@ namespace WPFApp
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true, true)
                 .Build();
-            _customerService = new CustomerService();
+            _customerService = customerService;
         }
 
 
