@@ -3,6 +3,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -70,16 +71,15 @@ namespace WPFApp
 
                 var bookingHistory = _bookingHistoryService.GetBookingHistoryById(Convert.ToInt32(updateBookingID));
 
-                bookingHistory.CustomerID = _customerService.GetCustomerByEmail(updateCustomerEmail).CustomerID; 
+                bookingHistory.CustomerID = _customerService.GetCustomerByEmail(updateCustomerEmail).CustomerID;
                 bookingHistory.RoomID = _roomService.GetRoomById(Convert.ToInt32(updateRoomNumber)).RoomID;
                 bookingHistory.CheckInDate = updateCheckInDate;
                 bookingHistory.CheckOutDate = updateCheckOutDate;
                 bookingHistory.BookingStatus = Convert.ToInt32(updateBookingStatus);
                 bookingHistory.TotalPrice = Convert.ToDouble(updateTotalPrice);
 
-                _bookingHistoryService.(bookingHistory);
-
-
+                _bookingHistoryService.UpdateBookingHistory(bookingHistory);
+                MessageBox.Show("Update successfully!");
             }
             catch (Exception ex)
             {
@@ -91,11 +91,21 @@ namespace WPFApp
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            var bookingID = int.Parse(txtBookingID.Text);
+            if (_bookingHistoryService.GetBookingHistoryById(bookingID) != null) { 
+                _bookingHistoryService.DeleteBookingHistory(bookingID);
+                MessageBox.Show("Delete successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please select booking history!");
+            }
         }
 
         private void btnReturnToAdmin_Click(object sender, RoutedEventArgs e)
         {
+            AdminPage adminPage = new AdminPage();
+            adminPage.Show();
 
         }
     }

@@ -1,0 +1,93 @@
+﻿<Window x:Class="WPFApp.BookingHistoryPageForCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp"
+        mc:Ignorable="d"
+        Title="BookingHistoryPageForCustomer" Height="742" Width="800">
+    <Grid>
+        <StackPanel Margin="0,0,0,91">
+            <StackPanel Margin="20 0">
+                <Label Target="{Binding ElementName=txtBookingID}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Booking ID"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtBookingID" />
+                <Label Target="{Binding ElementName=txtCustomerEmail}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Customer Name"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtCustomerEmail"/>
+                <Label Target="{Binding ElementName=txtCustomerName}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Customer Name"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtCustomerName" IsReadOnly="True"/>
+                <Label Target="{Binding ElementName=txtRoomNumber}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Room Number"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtRoomNumber"/>
+                <Label Target="{Binding ElementName=txtCheckInDate}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Check In Date"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtCheckInDate"/>
+                <Label Target="{Binding ElementName=txtCheckOutDate}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Check Out Date"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtCheckOutDate"/>
+                <Label Target="{Binding ElementName=txtNumberOfPeople}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Number Of People"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtNumberOfPeople"/>
+                <Label Target="{Binding ElementName=txtBookingStatus}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Booking Status"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtBookingStatus"/>
+                <Label Target="{Binding ElementName=txtTotalPrice}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Booking Status"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtTotalPrice"/>
+            </StackPanel>
+            <StackPanel Margin="20 10" Height="127">
+                <DataGrid Height="224" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgBookingHistory" SelectionChanged="dgBookingHistory_SelectionChanged" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
+                    <DataGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-0.528"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-2.769"/>
+                        </TransformGroup>
+                    </DataGrid.RenderTransform>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Margin="0,645,0,10" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+            <Button Width="616" Margin="90 10" Click="btnReturnToHomePage_Click">Return to Home Page</Button>
+        </StackPanel>
+    </Grid>
+</Window>

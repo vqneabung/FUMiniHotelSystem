@@ -45,6 +45,7 @@ namespace WPFApp
             services.AddTransient<ManageRoomTypePage>();
             services.AddTransient<ManageCustomerPage>();
             services.AddTransient<Booking>();
+            services.AddTransient<BookingHistoryPageForCustomer>(); 
 
             services.AddSingleton<IConfiguration>(configuration);
 
