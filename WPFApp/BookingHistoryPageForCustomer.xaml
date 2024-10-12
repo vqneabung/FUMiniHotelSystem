@@ -19,7 +19,7 @@
                 <Label Target="{Binding ElementName=txtCustomerEmail}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Customer Name"/>
+                        <AccessText Text="Customer Email"/>
                     </StackPanel>
                 </Label>
                 <TextBox x:Name="txtCustomerEmail"/>
@@ -68,7 +68,7 @@
                 <Label Target="{Binding ElementName=txtTotalPrice}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Booking Status"/>
+                        <AccessText Text="Booking Price"/>
                     </StackPanel>
                 </Label>
                 <TextBox x:Name="txtTotalPrice"/>

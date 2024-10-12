@@ -65,12 +65,13 @@ namespace WPFApp
             if (bookingHistory != null)
             {
                 txtBookingID.Text = bookingHistory.BookingID.ToString();
-                txtCustomerName.Text = _customerService.GetCustomerById(bookingHistory.CustomerID).ToString();
-                txtRoomNumber.Text = _roomService.GetRoomById(bookingHistory.BookingID).ToString();
+                txtCustomerEmail.Text = _customerService.GetCustomerById(bookingHistory.CustomerID).EmailAddress.ToString();
+                txtCustomerName.Text = _customerService.GetCustomerById(bookingHistory.CustomerID).CustomerFullName.ToString();
+                txtRoomNumber.Text = _roomService.GetRoomById(bookingHistory.RoomID).RoomNumber.ToString();
+                txtNumberOfPeople.Text = bookingHistory.NumberOfPeople.ToString();
                 txtCheckInDate.Text = bookingHistory.CheckInDate.ToString("d/M/yyyy");
                 txtCheckOutDate.Text = bookingHistory.CheckOutDate.ToString("d/M/yyyy");
                 txtBookingStatus.Text = bookingHistory.BookingStatus.ToString();
-                txtNumberOfPeople.Text = bookingHistory.NumberOfPeople.ToString();
                 txtTotalPrice.Text = bookingHistory.TotalPrice.ToString();
             }
         }

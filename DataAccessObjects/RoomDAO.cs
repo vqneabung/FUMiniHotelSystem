@@ -64,14 +64,14 @@ namespace DataAccessObjects
 
         public List<Room> GetAllRooms()
         {
-            return listRooms;
+            return listRooms.Where(r => r.RoomStatus < 2).ToList();
         }
 
         public Room GetRoomById(int id)
         {
             foreach (Room room in listRooms)
             {
-                if (room.RoomID == id)
+                if (room.RoomID == id && room.RoomStatus != 2)
                 {
                     return room;
                 }
@@ -83,7 +83,7 @@ namespace DataAccessObjects
         {
             foreach (Room room in listRooms)
             {
-                if (room.RoomNumber == roomNumber)
+                if (room.RoomNumber == roomNumber && room.RoomStatus != 2)
                 {
                     return room;
                 }
@@ -127,7 +127,7 @@ namespace DataAccessObjects
             {
                 if (r.RoomID == roomId)
                 {
-                    listRooms.Remove(r);
+                    r.RoomStatus = 2;
                     break;
                 }
             }

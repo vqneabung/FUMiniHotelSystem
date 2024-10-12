@@ -35,15 +35,23 @@ namespace WPFApp
             _customerService = customerService;
             _bookingService = bookingHistoryService;
             LoadRoom();
+            LoadRoomType();
             txtStartDay.Text = DateTime.Now.ToString("d/M/yyyy");
         }
 
         public void LoadRoom()
         {
             var rooms = _roomService.GetAllRooms();
-            dgRoom.ItemsSource = null;
-            SetupRoomDataGrid();
-            LoadRoomType();
+            if (rooms.Count != 0)
+            {
+                dgRoom.ItemsSource = null;
+                dgRoom.ItemsSource = rooms;
+                SetupRoomDataGrid();
+            } else
+            {
+                MessageBox.Show("Not room is here");
+                return;
+            }
         }
 
         public void SetupRoomDataGrid()
@@ -60,8 +68,6 @@ namespace WPFApp
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Status", Binding = new Binding("RoomStatus") });
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Price Per Date", Binding = new Binding("RoomPricePerDate") });
 
-            // Đặt nguồn dữ liệu cho DataGrid
-            dgRoom.ItemsSource = _roomService.GetAllRooms();
         }
 
         public void LoadRoomType()
@@ -124,6 +130,7 @@ namespace WPFApp
                 }
 
                 _bookingService.AddBookingHistory(booking);
+                LoadRoom();
                 
                 MessageBox.Show("Booking successfully!");
             }
@@ -159,31 +166,64 @@ namespace WPFApp
 
         private void cboRoomtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cboRoom.ItemsSource = _roomService.GetAllRooms().Where(r => r.RoomTypeID == (int)cboRoomType.SelectedValue && r.RoomStatus == 1)
+            try {
+                cboRoom.ItemsSource = _roomService.GetAllRooms().Where(r => r.RoomTypeID == (int)cboRoomType.SelectedValue && r.RoomStatus == 1)
                 .Select(r => r.RoomNumber);
-            cboRoom.SelectedIndex = 0;
-            txtStatus.Text = "Available";
+                cboRoom.SelectedIndex = 0;
+                txtStatus.Text = "Available";
+            } catch (Exception ex)
+            {
+
+            }
         }
 
         private void txtNumberPeople_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var max = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomMaxCapacity;
-            if (int.TryParse(txtNumberPeople.Text, out int numberPeople))
+            try
             {
-                if (numberPeople > max)
+                var max = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomMaxCapacity;
+                if (int.TryParse(txtNumberPeople.Text, out int numberPeople))
                 {
-                    MessageBox.Show("Please enter a number less than or equal to " + max);
-                    txtNumberPeople.Text = max.ToString();
-                    return;
+                    if (numberPeople > max)
+                    {
+                        MessageBox.Show("Please enter a number less than or equal to " + max);
+                        txtNumberPeople.Text = max.ToString();
+                        return;
+                    }
                 }
+
+                lbRoomPrice.Content = "Room Price: " + _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDate.ToString();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Please choose the room in room and room type combo box !");
             }
-
-            lbRoomPrice.Content = "Room Price: " + _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDate.ToString();
-
         }
 
         private void btnCheckOut_Click(object sender, RoutedEventArgs e)
         {
+            Room roomSelected = dgRoom.SelectedItem as Room;
+            if (roomSelected == null)
+            {
+                MessageBox.Show("Please select a room in data grid");
+                return;
+            } else if (_roomService.GetRoomByRoomNumber(roomSelected.RoomNumber) == null)
+            {
+                MessageBox.Show("Room not found");
+                return;
+            } else if (_roomService.GetRoomByRoomNumber(roomSelected.RoomNumber).RoomStatus == 1)
+            {
+
+                MessageBox.Show("This room is available");
+                return;
+
+            }
+            else
+            {
+                roomSelected.RoomStatus = 1;
+                MessageBox.Show("Checkout successfully!");
+                LoadRoom();
+            }
+
 
         }
 

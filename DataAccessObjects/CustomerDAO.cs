@@ -106,7 +106,7 @@ namespace DataAccessObjects
             {
                 if (c.CustomerID == customerId)
                 {
-                    listCustomer.Remove(c);
+                    c.CustomerStatus = 2;
                     break;
                 }
             }
@@ -116,7 +116,7 @@ namespace DataAccessObjects
         {
             foreach (Customer c in listCustomer)
             {
-                if (c.CustomerID == customerId)
+                if (c.CustomerID == customerId && c.CustomerStatus != 2)
                 {
                     return c;
                 }
@@ -128,7 +128,7 @@ namespace DataAccessObjects
         {
             foreach (Customer c in listCustomer)
             {
-                if (c.EmailAddress == customerEmail)
+                if (c.EmailAddress == customerEmail && c.CustomerStatus != 2)
                 {
                     return c;
                 }
@@ -138,7 +138,7 @@ namespace DataAccessObjects
 
         public List<Customer> GetAllCustomers()
         {
-            return listCustomer;
+            return listCustomer.Where(c => c.CustomerStatus != 2).ToList();
 
         }
     }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="Booking" Height="683" Width="800">
+        Title="Booking" Height="733" Width="800">
     <Grid Margin="0,0,0,42">
         <StackPanel Margin="0,0,0,29">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="20 0" Width="366" Height="295">
+            <StackPanel Orientation="Horizontal" Height="441">
+                <StackPanel Margin="20 0" Width="366" Height="414">
                     <Label Target="{Binding ElementName=txtEmail}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
@@ -39,9 +39,13 @@
                     </Label>
                     <TextBox x:Name="txtBirthday"/>
                     <Button Width="174" Margin="90 10" Click="btnFindCustomer_Click" Height="49">Find Customer By Email</Button>
+                    <StackPanel Orientation="Vertical">
+                        <Label>How to use:</Label>
+                        <Label Content="+ Đầu tiên nhập email người dùng, check email có tồn tại hay &#xA;không bằng cách click nút &quot;Find Customer By Email&quot;, &#xD;&#xA;nếu tồn tài thì nhập thông tin phòng ở bên phải nhập các&#xA;thông tin phòng.&#xA;+ Nếu không tồn tại thì nhập thông tin người &#xA;dùng, rồi nhập thông tin phòng, hệ thống sẽ tạo người dùng và&#xA;lưu trên cơ sở dữ liệu." Height="145"/>
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Width="356" Height="295">
+                <StackPanel Width="356" Height="424">
                     <Label Target="{Binding ElementName=cboRoomType}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
@@ -99,14 +103,16 @@
                             <Button Width="139" Margin="10 10" Click="btnCalculatePrice_Click" Height="33">Calculate Price</Button>
                         </StackPanel>
                     </StackPanel>
-
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="+ Nếu trả phòng, chọn phòng ở phần bảng phòng ở dưới,, và hệ&#xD;&#xA;thông cập nhật trạng thái từ 0 -&gt; 1, tức là phòng đang ở chế đọ&#xD;&#xA;có sẵn&#xD;&#xA;&#xD;&#xA;- Lưu ý, có một sô bug có thể phát sinh!" Height="112"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20 10" Height="500">
-                <DataGrid Height="277" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
+                <DataGrid Height="170" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Margin="0,575,0,-23" Orientation="Horizontal">
+        <StackPanel Margin="0,623,0,-23" Orientation="Horizontal">
             <Button Width="133" Margin="30 10" Click="btnBooking_Click">Booking</Button>
             <Button Width="133" Margin="120 10" Click="btnCheckOut_Click">Check Out</Button>
             <Button Width="132" Margin="60 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>

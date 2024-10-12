@@ -51,6 +51,15 @@ namespace WPFApp
             cboRoomType.SelectedIndex = 0;
         }
 
+        public void Clear()
+        {
+            txtDescribe.Text = "";
+            txtMaxCapacity.Text = "";
+            txtRoomNumber.Text = "";
+            txtStatus.Text = "";
+
+        }
+
         public void SetupRoomDataGrid()
         {
             dgRoom.AutoGenerateColumns = false; // Tắt tự động tạo cột
@@ -85,23 +94,31 @@ namespace WPFApp
         {
             if (txtRoomNumber.Text != "" && txtMaxCapacity.Text != "" && txtStatus.Text != "" && txtDescribe.Text != "")
             {
-                var roomNumber = txtRoomNumber.Text;
-                var roomType = cboRoomType.SelectedValue.ToString();
-                var maxCapacity = int.Parse(txtMaxCapacity.Text);
-                var status = txtStatus.Text;
-                var describe = txtDescribe.Text;
+                try
+                {
+                    var roomID = (dgRoom.SelectedItem as Room).RoomID;
+                    var roomNumber = txtRoomNumber.Text;
+                    var roomType = cboRoomType.SelectedValue.ToString();
+                    var maxCapacity = int.Parse(txtMaxCapacity.Text);
+                    var status = txtStatus.Text;
+                    var describe = txtDescribe.Text;
 
-                var room = _roomService.GetRoomByRoomNumber(roomNumber);
-                room.RoomNumber = roomNumber;
-                room.RoomTypeID = int.Parse(roomType);
-                room.RoomMaxCapacity = maxCapacity;
-                room.RoomStatus = int.Parse(status);
-                room.RoomDescription = describe;
+                    var room = _roomService.GetRoomById(roomID);
+                    room.RoomNumber = roomNumber;
+                    room.RoomTypeID = int.Parse(roomType);
+                    room.RoomMaxCapacity = maxCapacity;
+                    room.RoomStatus = int.Parse(status);
+                    room.RoomDescription = describe;
 
-                _roomService.UpdateRoom(room);
-                LoadRoom();
+                    _roomService.UpdateRoom(room);
+                    LoadRoom();
 
-                MessageBox.Show("Update successfully!");
+                    MessageBox.Show("Update successfully!");
+                    Clear();
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("Please choose room from the list!");
+                }
             }
             else
             {
@@ -117,20 +134,26 @@ namespace WPFApp
                 var roomNumber = txtRoomNumber.Text;
                 var roomType = cboRoomType.SelectedValue.ToString();
                 var maxCapacity = int.Parse(txtMaxCapacity.Text);
-                var status = txtStatus.Text;
                 var describe = txtDescribe.Text;
+
+                if (_roomService.GetRoomByRoomNumber(roomNumber) != null)
+                {
+                    MessageBox.Show("Room Number is existed");
+                    return;
+                }
 
                 var room = new Room
                 {
                     RoomNumber = roomNumber,
                     RoomTypeID = int.Parse(roomType),
                     RoomMaxCapacity = maxCapacity,
-                    RoomStatus = int.Parse(status),
+                    RoomStatus = 1,
                     RoomDescription = describe
                 };
 
                 _roomService.AddRoom(room);
                 LoadRoom();
+                Clear();
 
                 MessageBox.Show("Create successfully!");
             }
@@ -153,6 +176,7 @@ namespace WPFApp
                 }
                 _roomService.DeleteRoom(room.RoomID);
                 LoadRoom();
+                Clear();
                 MessageBox.Show("Delete successfully!");
             }
             else

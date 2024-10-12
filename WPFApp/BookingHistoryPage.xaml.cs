@@ -66,8 +66,9 @@ namespace WPFApp
             if (bookingHistory != null)
             {
                 txtBookingID.Text = bookingHistory.BookingID.ToString();
-                txtCustomerName.Text = _customerService.GetCustomerById(bookingHistory.CustomerID).ToString();
-                txtRoomNumber.Text = _roomService.GetRoomById(bookingHistory.BookingID).ToString();
+                txtCustomerEmail.Text = _customerService.GetCustomerById(bookingHistory.CustomerID).EmailAddress.ToString();
+                txtRoomNumber.Text = _roomService.GetRoomById(bookingHistory.RoomID).RoomNumber.ToString();
+                txtNumberOfPeople.Text = bookingHistory.NumberOfPeople.ToString();
                 txtCheckInDate.Text = bookingHistory.CheckInDate.ToString("d/M/yyyy");
                 txtCheckOutDate.Text = bookingHistory.CheckOutDate.ToString("d/M/yyyy");
                 txtBookingStatus.Text = bookingHistory.BookingStatus.ToString();
@@ -80,19 +81,19 @@ namespace WPFApp
             try
             {
                 var updateBookingID = txtBookingID.Text;
-                var updateCustomerEmail = txtCustomerEmail.Text;
                 var updateRoomNumber = txtRoomNumber.Text;
                 var updateCheckInDate = DateTime.ParseExact(txtCheckInDate.Text, "d/M/yyyy", null);
                 var updateCheckOutDate = DateTime.ParseExact(txtCheckOutDate.Text, "d/M/yyyy", null);
+                var updateNumberOfPeople = txtNumberOfPeople.Text;
                 var updateBookingStatus = txtBookingStatus.Text;
                 var updateTotalPrice = txtTotalPrice.Text;
 
                 var bookingHistory = _bookingHistoryService.GetBookingHistoryById(Convert.ToInt32(updateBookingID));
 
-                bookingHistory.CustomerID = _customerService.GetCustomerByEmail(updateCustomerEmail).CustomerID;
                 bookingHistory.RoomID = _roomService.GetRoomById(Convert.ToInt32(updateRoomNumber)).RoomID;
                 bookingHistory.CheckInDate = updateCheckInDate;
                 bookingHistory.CheckOutDate = updateCheckOutDate;
+                bookingHistory.NumberOfPeople = int.Parse(updateNumberOfPeople);
                 bookingHistory.BookingStatus = Convert.ToInt32(updateBookingStatus);
                 bookingHistory.TotalPrice = Convert.ToDouble(updateTotalPrice);
 

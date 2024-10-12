@@ -38,6 +38,15 @@ namespace WPFApp
             dgRoomType.ItemsSource = _roomTypeService.GetAllRoomTypes();
         }
 
+        public void Clear()
+        {
+            txtRoomTypeID.Text = "";
+            txtRoomTypeName.Text = "";
+            txtTypeDescription.Text = "";
+            txtTypeNote.Text = "";
+
+        }
+
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (txtRoomTypeName.Text != "" && txtTypeDescription.Text != "" && txtTypeNote.Text != "")
@@ -55,6 +64,7 @@ namespace WPFApp
 
                 _roomTypeService.UpdateRoomType(roomType);
                 LoadRoomType();
+                Clear();
                 
                 MessageBox.Show("Update Room Type Successfully");
 
@@ -80,6 +90,7 @@ namespace WPFApp
 
                 _roomTypeService.AddRoomType(newRoomType);
                 LoadRoomType();
+                Clear();
                 MessageBox.Show("Create Room Type Successfully");
             }
             else
@@ -101,6 +112,7 @@ namespace WPFApp
                 }
                 _roomTypeService.DeleteRoomType(roomType.RoomTypeID);
                 LoadRoomType();
+                Clear();
                 MessageBox.Show("Delete Room Type Successfully");
             }
             else

@@ -43,7 +43,7 @@
                         <AccessText Text="Status"/>
                     </StackPanel>
                 </Label>
-                <TextBox x:Name="txtStatus"/>
+                <TextBox x:Name="txtStatus" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="127">
                 <DataGrid Height="120" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>

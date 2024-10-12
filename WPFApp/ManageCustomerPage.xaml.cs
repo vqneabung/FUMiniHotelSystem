@@ -37,6 +37,14 @@ namespace WPFApp
             dgCustomer.ItemsSource = _customerService.GetAllCustomers();
         }
 
+        public void Clear()
+        {
+            txtBirthday.Text = "";
+            txtEmail.Text = "";
+            txtFullName.Text = "";
+            txtTelephone.Text = "";
+        }
+
         private void dgCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
