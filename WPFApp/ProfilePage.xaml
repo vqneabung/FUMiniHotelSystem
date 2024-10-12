@@ -36,6 +36,7 @@
                 </StackPanel>
             </Label>
             <TextBox x:Name="txtBirthday" IsReadOnly="True"/>
+            <Label>+ Bấm Edit để có thể chỉnh sửa.</Label>
         </StackPanel>
         <StackPanel Margin="180,365,0,0" Orientation="Horizontal">
             <Button Width="100" Margin="50 10" Click="btnEdit_Click">Edit</Button>

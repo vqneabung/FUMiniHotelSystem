@@ -13,6 +13,18 @@ namespace DataAccessObjects
 
         public BookingHistoryDAO()
         {
+            var bookingHistory1 = new BookingHistory
+            {
+                BookingID = 1,
+                BookingStatus = 1,
+                CheckInDate = new DateTime(2021, 1, 1),
+                CheckOutDate = new DateTime(2021, 1, 5),
+                CustomerID = 1,
+                NumberOfPeople = 2,
+                RoomID = 1,
+                TotalPrice = 1000
+            };
+            listBookingHistories.Add(bookingHistory1);
 
         }
 
