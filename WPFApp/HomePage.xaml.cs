@@ -42,5 +42,12 @@ namespace WPFApp
             bookingHistoryPageForCustomer.Show();
             this.Close();
         }
+
+        private void btnLogout(object sender, RoutedEventArgs e)
+        {
+            LoginPage login = App.ServiceProvider.GetRequiredService<LoginPage>();
+            login.Show();
+            this.Close();
+        }
     }
 }

@@ -29,12 +29,14 @@ namespace WPFApp
             InitializeComponent();
             _roomService = roomService;
             _roomTypeService = roomTypeService;
+            LoadRoom();
         }
 
         public void LoadRoom()
         {
             var rooms = _roomService.GetAllRooms();
             dgRoom.ItemsSource = null;
+            dgRoom.ItemsSource = rooms;
             SetupRoomDataGrid();
             LoadRoomType();
         }
@@ -57,10 +59,13 @@ namespace WPFApp
             dgRoom.Columns.Clear();
 
             // Thêm các cột theo thứ tự mong muốn
+            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room ID", Binding = new Binding("RoomID") });
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Number", Binding = new Binding("RoomNumber") });
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Type Name", Binding = new Binding("RoomType.RoomTypeName") });
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Max Capacity", Binding = new Binding("RoomMaxCapacity") });
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Status", Binding = new Binding("RoomStatus") });
+
+
         }
 
         private void dgRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)

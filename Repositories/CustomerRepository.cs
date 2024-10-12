@@ -12,7 +12,7 @@ namespace Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        CustomerDAO CustomerDAO = new CustomerDAO();
+        public static CustomerDAO CustomerDAO = new CustomerDAO();
 
         public void AddCustomer(Customer customer)
         {

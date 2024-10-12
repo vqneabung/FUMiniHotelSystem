@@ -35,11 +35,6 @@ namespace Services
             return roomRepository.GetAllRooms();
         }
 
-        public List<Room> GetAllRoomsIncludeRoomType()
-        {
-            return roomRepository.GetAllRoomsIncludeRoomType();
-        }
-
         public Room GetRoomByRoomNumber(string roomNumber)
         {
             return roomRepository.GetRoomByRoomNumber(roomNumber);

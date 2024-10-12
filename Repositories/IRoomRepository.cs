@@ -11,7 +11,6 @@ namespace Repositories
         Room GetRoomById(int id);
         List<Room> GetAllRooms();
         Room GetRoomByRoomNumber(string roomNumber);
-        public List<Room> GetAllRoomsIncludeRoomType();
 
     }
 }

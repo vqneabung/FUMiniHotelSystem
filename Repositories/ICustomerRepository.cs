@@ -15,7 +15,6 @@ namespace Repositories
         void DeleteCustomer(int customerId);
         Customer GetCustomerById(int customerId);
         List<Customer> GetAllCustomers();
-
         Customer GetCustomerByEmail(string customerEmail);
 
     }

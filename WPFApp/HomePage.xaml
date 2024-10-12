@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="HomePage" Height="450" Width="800">
     <Grid>
-        <StackPanel Margin="50">
+        <StackPanel Margin="50,50,50,10">
             <StackPanel Margin="50" Height="100">
                 <TextBlock FontSize="75" HorizontalAlignment="Center">
                     Home Page
                 </TextBlock>
             </StackPanel>
+            <StackPanel Height="117">
             <StackPanel Margin="50 -5" Height="68" Width="379" Orientation="Horizontal">
                 <Button Height="30" Width="100" Margin="25 0" Click="btnProfile_Click">
                     Profile
@@ -20,6 +21,11 @@
                 <Button Height="30" Width="100" Margin="100 0" Click="btnBookingHistory_Click">
                     Booking History
                 </Button>
+            </StackPanel>
+                <StackPanel>
+                    <Button Height="30" Width="100" Click="btnLogout" Content="Log out"/>
+                </StackPanel>
+
             </StackPanel>
         </StackPanel>
     </Grid>

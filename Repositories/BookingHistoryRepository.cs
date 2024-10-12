@@ -24,6 +24,12 @@ namespace Repositories
 
         public List<BookingHistory> GetAllBookingHistories()
         {
+            foreach (var bookingHistory in BookingHistoryDAO.GetAllBookingHistories())
+            {
+                bookingHistory.Customer = CustomerRepository.CustomerDAO.GetCustomerById(bookingHistory.CustomerID);
+                bookingHistory.Room = RoomRepository.RoomDAO.GetRoomById(bookingHistory.RoomID);
+            }
+
             return BookingHistoryDAO.GetAllBookingHistories();
         }
 

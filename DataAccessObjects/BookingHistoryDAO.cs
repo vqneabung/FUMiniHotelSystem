@@ -11,6 +11,11 @@ namespace DataAccessObjects
     {
         public List<BookingHistory> listBookingHistories = new List<BookingHistory>();
 
+        public BookingHistoryDAO()
+        {
+
+        }
+
         public void AddBookingHistory(BookingHistory bookingHistory)
         {
             if (listBookingHistories.Count == 0)
@@ -21,6 +26,8 @@ namespace DataAccessObjects
             {
                 bookingHistory.BookingID = listBookingHistories[listBookingHistories.Count - 1].BookingID + 1;
             }
+
+            listBookingHistories.Add(bookingHistory);
         }
 
         public void DeleteBookingHistory(int id)

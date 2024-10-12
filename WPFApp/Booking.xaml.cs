@@ -61,7 +61,7 @@ namespace WPFApp
             dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Price Per Date", Binding = new Binding("RoomPricePerDate") });
 
             // Đặt nguồn dữ liệu cho DataGrid
-            dgRoom.ItemsSource = _roomService.GetAllRoomsIncludeRoomType();
+            dgRoom.ItemsSource = _roomService.GetAllRooms();
         }
 
         public void LoadRoomType()

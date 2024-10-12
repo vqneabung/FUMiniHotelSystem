@@ -26,30 +26,15 @@ namespace Repositories
 
         public List<Room> GetAllRooms()
         {
-             List<Room> IncludeRoomType()
-            {
-                
-                for (int i = 0; i < RoomDAO.GetAllRooms().Count; i++)
-                {
-                    RoomDAO.GetAllRooms()[i].RoomType = RoomTypeRepository.RoomTypeDAO.GetRoomTypeByID(RoomDAO.GetAllRooms()[i].RoomTypeID);
-                }
-
-                return RoomDAO.GetAllRooms();
-            }
-
-            return RoomDAO.GetAllRooms();
-        }
-
-        public List<Room> GetAllRoomsIncludeRoomType()
-        {
-
             for (int i = 0; i < RoomDAO.GetAllRooms().Count; i++)
             {
                 RoomDAO.GetAllRooms()[i].RoomType = RoomTypeRepository.RoomTypeDAO.GetRoomTypeByID(RoomDAO.GetAllRooms()[i].RoomTypeID);
             }
 
             return RoomDAO.GetAllRooms();
+
         }
+
 
         public Room GetRoomById(int id)
         {
