@@ -16,13 +16,13 @@
                     </StackPanel>
                 </Label>
                 <TextBox x:Name="txtRoomNumber" />
-                <Label Target="{Binding ElementName=cbRoomType}" >
+                <Label Target="{Binding ElementName=cboRoomType}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                         <AccessText Text="Room Type"/>
                     </StackPanel>
                 </Label>
-                <ComboBox x:Name="cbRoomType" />
+                <ComboBox x:Name="cboRoomType" />
                 <Label Target="{Binding ElementName=txtMaxCapacity}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
@@ -46,7 +46,7 @@
                 <TextBox x:Name="txtStatus"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="127">
-                <DataGrid Height="120" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgCustomer" SelectionChanged="dgCustomer_SelectionChanged" IsReadOnly="True"/>
+                <DataGrid Height="120" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,360,0,10" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">

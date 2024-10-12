@@ -13,5 +13,7 @@ namespace Repositories
         void DeleteBookingHistory(int id);
         BookingHistory GetBookingHistoryById(int bookingHistoryId);
         List<BookingHistory> GetAllBookingHistories();
+
+        void UpdateBookingHistory(BookingHistory bookingHistory);
     }
 }

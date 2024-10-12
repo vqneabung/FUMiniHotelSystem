@@ -37,5 +37,10 @@ namespace Services
         {
             return bookingHistoryRepository.GetBookingHistoryById(bookingHistoryId);
         }
+
+        public void UpdateBookingHistory(BookingHistory bookingHistory)
+        {
+            bookingHistoryRepository.UpdateBookingHistory(bookingHistory);
+        }
     }
 }

@@ -53,6 +53,18 @@ namespace DataAccessObjects
             return null;
         }
 
+        public void UpdateBookingHistory(BookingHistory bookingHistory)
+        {
+            for (int i = 0; i < listBookingHistories.Count; i++)
+            {
+                if (listBookingHistories[i].BookingID == bookingHistory.BookingID)
+                {
+                    listBookingHistories[i] = bookingHistory;
+                    break;
+                }
+            }
+        }
+
 
 
     }

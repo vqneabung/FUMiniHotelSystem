@@ -31,5 +31,10 @@ namespace Repositories
         {
             return BookingHistoryDAO.GetBookingHistoryById(bookingHistoryId);
         }
+
+        public void UpdateBookingHistory(BookingHistory bookingHistory)
+        {
+            BookingHistoryDAO.UpdateBookingHistory(bookingHistory);
+        }
     }
 }

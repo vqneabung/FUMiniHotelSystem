@@ -7,6 +7,54 @@
         mc:Ignorable="d"
         Title="ManageRoomTypePage" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="0,0,0,79">
+            <StackPanel Margin="20 0">
+                <Label Target="{Binding ElementName=txtRoomTypeID}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Room Type Name"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtRoomTypeID" />
+                <Label Target="{Binding ElementName=txtRoomTypeName}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Room Type Name"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtRoomTypeName" />
+                <Label Target="{Binding ElementName=txtTypeDescription}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Type Description"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtTypeDescription"/>
+                <Label Target="{Binding ElementName=txtTypenNote}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
+                        <AccessText Text="Typen Note"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="txtTypeNote"/>
+            </StackPanel>
+            <StackPanel Margin="20 10" Height="127">
+                <DataGrid Height="213" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoomType" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Margin="0,360,0,10" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Width="75" Margin="50 10" Click="btnUpdate_Click">Update</Button>
+            <Button Width="75" Margin="50 10" Click="btnCreate_Click">Create</Button>
+            <Button Width="75" Margin="50 10" Click="btnDelete_Click">Delete</Button>
+            <Button Width="132" Margin="40 10" Click="btnReturnToAdmin_Click">Return to Admin Page</Button>
+        </StackPanel>
     </Grid>
 </Window>

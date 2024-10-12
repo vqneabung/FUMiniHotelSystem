@@ -94,7 +94,7 @@ namespace WPFApp
                 {
                     RoomID = room.RoomID,
                     CustomerID = customer.CustomerID,
-                    BookingStatus = 0,
+                    BookingStatus = 1,
                     CheckInDate = DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null),
                     CheckOutDate = DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null),
                     NumberOfPeople = int.Parse(txtNumberPeople.Text),

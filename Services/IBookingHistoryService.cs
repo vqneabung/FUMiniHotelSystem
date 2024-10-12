@@ -14,5 +14,7 @@ namespace Services
         BookingHistory GetBookingHistoryById(int bookingHistoryId);
         List<BookingHistory> GetAllBookingHistories();
 
+        void UpdateBookingHistory(BookingHistory bookingHistory);
+
     }
 }

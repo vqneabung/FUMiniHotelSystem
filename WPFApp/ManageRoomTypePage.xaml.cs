@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessObjects;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,113 @@ namespace WPFApp
     /// </summary>
     public partial class ManageRoomTypePage : Window
     {
-        public ManageRoomTypePage()
+
+        private readonly IRoomTypeService _roomTypeService;
+        public ManageRoomTypePage(IRoomTypeService roomTypeService)
         {
             InitializeComponent();
+            _roomTypeService = roomTypeService;
+            LoadRoomType();
+        }
+
+
+        public void LoadRoomType()
+        {
+            var roomTypes = _roomTypeService.GetAllRoomTypes();
+            dgRoomType.ItemsSource = null;
+            dgRoomType.ItemsSource = _roomTypeService.GetAllRoomTypes();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtRoomTypeName.Text != "" && txtTypeDescription.Text != "" && txtTypeNote.Text != "")
+            {
+                var updateRoomTypeName = txtRoomTypeName.Text;
+                var updateTypeDescription = txtTypeDescription.Text;
+                var updateTypeNote = txtTypeNote.Text;
+                var updateTypeID = txtRoomTypeID.Text;
+
+                var roomType = _roomTypeService.GetRoomTypeById(Convert.ToInt32(updateTypeID));
+
+                roomType.RoomTypeName = updateRoomTypeName;
+                roomType.TypeDescription = updateTypeDescription;
+                roomType.TypenNote = updateTypeNote;
+
+                _roomTypeService.UpdateRoomType(roomType);
+                LoadRoomType();
+                
+                MessageBox.Show("Update Room Type Successfully");
+
+            }
+            else
+            {
+                MessageBox.Show("Please fill all the fields");
+            }
+
+
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtRoomTypeName.Text != "" && txtTypeDescription.Text != "" && txtTypeNote.Text != "")
+            {
+                var newRoomType = new RoomType
+                {
+                    RoomTypeName = txtRoomTypeName.Text,
+                    TypeDescription = txtTypeDescription.Text,
+                    TypenNote = txtTypeNote.Text
+                };
+
+                _roomTypeService.AddRoomType(newRoomType);
+                LoadRoomType();
+                MessageBox.Show("Create Room Type Successfully");
+            }
+            else
+            {
+                MessageBox.Show("Please fill all the fields");
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtRoomTypeName.Text != "" && txtTypeDescription.Text != "" && txtTypeNote.Text != "")
+            {
+                var roomType = _roomTypeService.GetRoomTypeById(Convert.ToInt32(txtRoomTypeID.Text));
+                if (roomType == null)
+                {
+                    MessageBox.Show("Room Type not found");
+                    return;
+                }
+                _roomTypeService.DeleteRoomType(roomType.RoomTypeID);
+                LoadRoomType();
+                MessageBox.Show("Delete Room Type Successfully");
+            }
+            else
+            {
+                MessageBox.Show("Please select Room Type");
+            }
+
+        }
+
+        private void btnReturnToAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            var adminPage = new AdminPage();
+            adminPage.Show();
+            this.Close();
+
+        }
+
+        private void dgRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var roomType = dgRoomType.SelectedItem as RoomType;
+            if (roomType != null)
+            {
+                txtRoomTypeName.Text = roomType.RoomTypeName;
+                txtTypeDescription.Text = roomType.TypeDescription;
+                txtTypeNote.Text = roomType.TypenNote;
+            }
+
         }
     }
 }
