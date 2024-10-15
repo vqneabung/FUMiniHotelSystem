@@ -1,4 +1,5 @@
-﻿using DataAccessObjects;
+﻿using BussinessObjects;
+using DataAccessObjects;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repositories;
@@ -50,19 +51,21 @@ namespace WPFApp
 
             services.AddSingleton<IConfiguration>(configuration);
 
-            services.AddSingleton<BookingHistoryDAO>();
+            services.AddSingleton<BookingReservationDAO>();
             services.AddSingleton<CustomerDAO>();
-            services.AddSingleton<RoomDAO>();
+            services.AddSingleton<RoomInformationDAO>();
             services.AddSingleton<RoomTypeDAO>();
 
-            services.AddSingleton<IRoomRepository, RoomRepository>();
-            services.AddSingleton<IRoomService, RoomService>();
+            services.AddSingleton<IRoomInformationRepository, RoomInformationRepository>();
+            services.AddSingleton<IRoomInformationService, RoomInformationService>();
             services.AddSingleton<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
             services.AddSingleton<IRoomTypeService, RoomTypeService>();
-            services.AddSingleton<IBookingHistoryService, BookingHistoryService>();
-            services.AddSingleton<IBookingHistoryRepository, BookingHistoryRepository>();
+            services.AddSingleton<IBookingReservationService, BookingReservationService>();
+            services.AddSingleton<IBookingReservationRepository, BookingReservationRepository>();
+
+            services.AddDbContext<FuminiHotelManagementContext>();
 
 
 

@@ -10,56 +10,37 @@ namespace DataAccessObjects
 {
     public class RoomTypeDAO
     {
-        public List<RoomType> listRoomTypes = new List<RoomType>();
+        private readonly FuminiHotelManagementContext _context;
 
-        public RoomTypeDAO()
+        public RoomTypeDAO(FuminiHotelManagementContext context)
         {
-            listRoomTypes.Add(new RoomType { RoomTypeID = 1, RoomTypeName = "Single", TypeDescription = "Single bed room" });
-            listRoomTypes.Add(new RoomType { RoomTypeID = 2, RoomTypeName = "Double", TypeDescription = "Double bed room" });
-            listRoomTypes.Add(new RoomType { RoomTypeID = 3, RoomTypeName = "Suite", TypeDescription = "Suite room" });
+            _context = context;
         }
 
         public List<RoomType> GetAllRoomTypes()
         {
-            return listRoomTypes;
+            return _context.RoomTypes.ToList();
         }
 
         public RoomType GetRoomTypeByID(int id)
         {
-            return listRoomTypes.Where(x => x.RoomTypeID == id).FirstOrDefault();
+           return _context.RoomTypes.Find(id);
         }
 
         public void AddRoomType(RoomType roomType)
         {
-            if (listRoomTypes.Count > 0)
-            {
-                roomType.RoomTypeID = listRoomTypes.Max(x => x.RoomTypeID) + 1;
-            }
-            else
-            {
-                roomType.RoomTypeID = 1;
-            }
-
-            listRoomTypes.Add(roomType);
+           _context.RoomTypes.Add(roomType);
         }
 
         public void UpdateRoomType(RoomType roomType)
         {
-            RoomType roomTypeToUpdate = listRoomTypes.Where(x => x.RoomTypeID == roomType.RoomTypeID).FirstOrDefault();
-            roomTypeToUpdate.RoomTypeName = roomType.RoomTypeName;
-            roomTypeToUpdate.TypeDescription = roomType.TypeDescription;
+            _context.RoomTypes.Update(roomType);
+            _context.SaveChanges();
         }
 
         public void DeleteRoomType(int roomTypeID)
         {
-            foreach (RoomType rt in listRoomTypes)
-            {
-                if (rt.RoomTypeID == roomTypeID)
-                {
-                    listRoomTypes.Remove(rt);
-                    break;
-                }
-            }
+           _context.RoomTypes.Remove(GetRoomTypeByID(roomTypeID));
         }
 
     }

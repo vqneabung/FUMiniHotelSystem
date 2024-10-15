@@ -23,10 +23,10 @@ namespace WPFApp
     public partial class BookingHistoryPage : Window
     {
 
-        private readonly IBookingHistoryService _bookingHistoryService;
-        private readonly IRoomService _roomService;
+        private readonly IBookingReservationService _bookingHistoryService;
+        private readonly IRoomInformationService _roomService;
         private readonly ICustomerService _customerService;
-        public BookingHistoryPage(IBookingHistoryService bookingHistoryService, IRoomService roomService, ICustomerService customerService)
+        public BookingHistoryPage(IBookingReservationService bookingHistoryService, IRoomInformationService roomService, ICustomerService customerService)
         {
             InitializeComponent();
             _bookingHistoryService = bookingHistoryService;

@@ -21,10 +21,10 @@ namespace WPFApp
     /// </summary>
     public partial class ManageRoomPage : Window
     {
-        private readonly IRoomService _roomService;
+        private readonly IRoomInformationService _roomService;
         private readonly IRoomTypeService _roomTypeService;
 
-        public ManageRoomPage(IRoomService roomService, IRoomTypeService roomTypeService)
+        public ManageRoomPage(IRoomInformationService roomService, IRoomTypeService roomTypeService)
         {
             InitializeComponent();
             _roomService = roomService;

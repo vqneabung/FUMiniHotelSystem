@@ -21,13 +21,13 @@ namespace WPFApp
     /// </summary>
     public partial class Booking : Window
     {
-        public readonly IRoomService _roomService;
+        public readonly IRoomInformationService _roomService;
         public readonly IRoomTypeService _roomTypeService;
         public readonly ICustomerService _customerService;
-        public readonly IBookingHistoryService _bookingService;
+        public readonly IBookingReservationService _bookingService;
 
 
-        public Booking(IRoomService roomService, IRoomTypeService roomTypeService, ICustomerService customerService, IBookingHistoryService bookingHistoryService)
+        public Booking(IRoomInformationService roomService, IRoomTypeService roomTypeService, ICustomerService customerService, IBookingReservationService bookingHistoryService)
         {
             InitializeComponent();
             _roomService = roomService;
