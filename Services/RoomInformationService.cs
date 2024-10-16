@@ -29,7 +29,7 @@ namespace Services
             _roomInfomationRepository.DeleteRoomInformation(id);
         }
 
-        public List<RoomInformation> GetAllRoomInformations()        {
+        public List<RoomInformation> GetAllRoomInformations() {
     
             return _roomInfomationRepository.GetAllRoomInformations();
         }
@@ -45,9 +45,10 @@ namespace Services
             return _roomInfomationRepository.GetRoomInformationById(id);
         }
 
-        public void UpdateInformationRoom(RoomInformation room)
+        public void UpdateRoomInformation(RoomInformation room)
         {
             _roomInfomationRepository.UpdateRoomInformation(room);
         }
+
     }
 }
