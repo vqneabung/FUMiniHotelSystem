@@ -38,16 +38,17 @@ namespace WPFApp
         private void ConfigureService(IServiceCollection services)
         {
             configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+
             services.AddTransient<LoginPage>();
             services.AddTransient<HomePage>();
             services.AddTransient<AdminPage>();
             services.AddTransient<ProfilePage>();
-            services.AddTransient<BookingHistoryPage>();
+            services.AddTransient<BookingReservationPage>();
             services.AddTransient<ManageRoomPage>();
             services.AddTransient<ManageRoomTypePage>();
             services.AddTransient<ManageCustomerPage>();
             services.AddTransient<Booking>();
-            services.AddTransient<BookingHistoryPageForCustomer>(); 
+            services.AddTransient<BookingReservationPageForCustomer>(); 
 
             services.AddSingleton<IConfiguration>(configuration);
 
@@ -55,6 +56,7 @@ namespace WPFApp
             services.AddSingleton<CustomerDAO>();
             services.AddSingleton<RoomInformationDAO>();
             services.AddSingleton<RoomTypeDAO>();
+            services.AddSingleton<BookingDetailDAO>();
 
             services.AddSingleton<IRoomInformationRepository, RoomInformationRepository>();
             services.AddSingleton<IRoomInformationService, RoomInformationService>();
@@ -64,6 +66,8 @@ namespace WPFApp
             services.AddSingleton<IRoomTypeService, RoomTypeService>();
             services.AddSingleton<IBookingReservationService, BookingReservationService>();
             services.AddSingleton<IBookingReservationRepository, BookingReservationRepository>();
+            services.AddSingleton<IBookingDetailRepository, BookingDetailRepository>();
+            services.AddSingleton<IBookingDetailService, BookingDetailService>();
 
             services.AddDbContext<FuminiHotelManagementContext>();
 

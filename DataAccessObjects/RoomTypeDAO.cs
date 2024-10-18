@@ -29,18 +29,21 @@ namespace DataAccessObjects
 
         public void AddRoomType(RoomType roomType)
         {
-           _context.RoomTypes.Add(roomType);
+            _context.RoomTypes.Add(roomType);
+            _context.SaveChanges();
         }
 
         public void UpdateRoomType(RoomType roomType)
         {
             _context.RoomTypes.Update(roomType);
+            _context.Entry(roomType).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
 
         public void DeleteRoomType(int roomTypeID)
         {
            _context.RoomTypes.Remove(GetRoomTypeByID(roomTypeID));
+            _context.SaveChanges();
         }
 
     }

@@ -54,7 +54,7 @@ namespace WPFApp
                 txtEmail.Text = customer.EmailAddress;
                 txtFullName.Text = customer.CustomerFullName;
                 txtTelephone.Text = customer.Telephone;
-                txtBirthday.Text = customer.CustomerBirthday.ToString("d/M/yyyy");
+                txtBirthday.Text = customer.CustomerBirthday.ToString();
             }
         }
 
@@ -70,15 +70,16 @@ namespace WPFApp
                 customer.Telephone = updateTelephone;
                 customer.CustomerFullName = updateFullName;
 
-                if (DateTime.TryParseExact(updateBirtday, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                if (DateOnly.TryParse(updateBirtday, out DateOnly parseDateOnly))
                 {
-                    customer.CustomerBirthday = parsedDate;
+                    customer.CustomerBirthday = parseDateOnly;
                 }
                 else
                 {
                     MessageBox.Show("Invalid date format. Please use d/M/yyyy.");
                     return;
                 }
+               
 
                 _customerService.UpdateCustomer(customer);
                 LoadCustomer();
@@ -97,7 +98,7 @@ namespace WPFApp
                 CustomerFullName = txtFullName.Text,
                 EmailAddress = txtEmail.Text,
                 Telephone = txtTelephone.Text,
-                CustomerBirthday = DateTime.ParseExact(txtBirthday.Text, "d/M/yyyy", null),
+                CustomerBirthday = DateOnly.Parse(txtBirthday.Text), // Fix: Use txtBirthday.Text instead of txtBirthday
                 CustomerStatus = 1
             };
 
@@ -128,7 +129,7 @@ namespace WPFApp
                     MessageBox.Show("Customer not found");
                     return;
                 }
-                _customerService.DeleteCustomer(customer.CustomerID);
+                _customerService.DeleteCustomer(customer.CustomerId);
                 LoadCustomer();
                 MessageBox.Show("Delete successfully!");
             }

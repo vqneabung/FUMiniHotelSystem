@@ -37,7 +37,7 @@ namespace WPFApp
             txtEmail.Text = customer.EmailAddress;
             txtFullName.Text = customer.CustomerFullName;
             txtTelephone.Text = customer.Telephone;
-            txtBirthday.Text = customer.CustomerBirthday.ToString("d/M/yyyy");
+            txtBirthday.Text = customer.CustomerBirthday.ToString();
         }
 
 
@@ -65,9 +65,9 @@ namespace WPFApp
             customer.Telephone = updateTelephone;
             customer.CustomerFullName = updateFullName;
 
-            if (DateTime.TryParseExact(updateBirtday, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+            if (DateOnly.TryParse(updateBirtday, out DateOnly parseDateOnly))
             {
-                customer.CustomerBirthday = parsedDate;
+                customer.CustomerBirthday = parseDateOnly;
             }
             else
             {

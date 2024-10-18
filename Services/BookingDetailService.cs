@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class BookingDetailService
+    public class BookingDetailService : IBookingDetailService
     {
         private readonly IBookingDetailRepository _bookingDetailRepository;
 
@@ -32,9 +32,14 @@ namespace Services
             return _bookingDetailRepository.GetAllBookingDetails();
         }
 
-        public BookingDetail GetBookingDetailById(int booking)
+        public BookingDetail GetBookingDetailByBookingReserveId(int booking)
         {
-            return _bookingDetailRepository.GetBookingDetailById(booking);
+            return _bookingDetailRepository.GetBookingDetailByBookingReserveId(booking);
+        }
+
+        public void UpdateBookingDetail(BookingDetail bookingDetail)
+        {
+            _bookingDetailRepository.UpdateBookingDetail(bookingDetail);
         }
     }
 }

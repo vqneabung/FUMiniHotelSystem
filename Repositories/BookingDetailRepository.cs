@@ -33,7 +33,7 @@ namespace Repositories
            return _bookingDetailDAO.GetAllBookingDetails();
         }
 
-        public BookingDetail GetBookingDetailById(int bookingDetailId)
+        public BookingDetail GetBookingDetailByBookingReserveId(int bookingDetailId)
         {
             return _bookingDetailDAO.GetBookingDetailById(bookingDetailId);
         }

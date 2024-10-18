@@ -21,27 +21,29 @@ namespace WPFApp
     /// </summary>
     public partial class Booking : Window
     {
-        public readonly IRoomInformationService _roomService;
+        public readonly IRoomInformationService _roomInformationService;
         public readonly IRoomTypeService _roomTypeService;
         public readonly ICustomerService _customerService;
-        public readonly IBookingReservationService _bookingService;
+        public readonly IBookingReservationService _bookingReservationService;
+        public readonly IBookingDetailService _bookingDetailService;
 
 
-        public Booking(IRoomInformationService roomService, IRoomTypeService roomTypeService, ICustomerService customerService, IBookingReservationService bookingHistoryService)
+        public Booking(IRoomInformationService roomInformationService, IRoomTypeService roomTypeService, ICustomerService customerService, IBookingReservationService bookingReservationService, IBookingDetailService bookingDetailService)
         {
             InitializeComponent();
-            _roomService = roomService;
+            _roomInformationService = roomInformationService;
             _roomTypeService = roomTypeService;
             _customerService = customerService;
-            _bookingService = bookingHistoryService;
+            _bookingReservationService = bookingReservationService;
             LoadRoom();
             LoadRoomType();
             txtStartDay.Text = DateTime.Now.ToString("d/M/yyyy");
+            _bookingDetailService = bookingDetailService;
         }
 
         public void LoadRoom()
         {
-            var rooms = _roomService.GetAllRooms();
+            var rooms = _roomInformationService.GetAllRoomInformations();
             if (rooms.Count != 0)
             {
                 dgRoom.ItemsSource = null;
@@ -89,12 +91,12 @@ namespace WPFApp
         {
             try
             {
-                if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtNumberPeople.Text) || string.IsNullOrEmpty(txtStartDay.Text) || string.IsNullOrEmpty(txtEndDay.Text))
+                if (string.IsNullOrEmpty(txtEmail.Text) ||  string.IsNullOrEmpty(txtStartDay.Text) || string.IsNullOrEmpty(txtEndDay.Text))
                 {
                     MessageBox.Show("Please fill in all fields");
                     return;
                 }
-                var room = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString());
+                var room = _roomInformationService.GetRoomInformationByRoomNumber(cboRoom.SelectedValue.ToString());
                 var customer = _customerService.GetCustomerByEmail(txtEmail.Text);
                 if (customer == null)
                 {
@@ -103,33 +105,46 @@ namespace WPFApp
                         EmailAddress = txtEmail.Text,
                         CustomerFullName = txtFullName.Text,
                         Telephone = txtTelephone.Text,
-                        CustomerBirthday = DateTime.ParseExact(txtBirthday.Text, "d/M/yyyy", null),
+                        CustomerBirthday = DateOnly.Parse(txtBirthday.Text),
                         CustomerStatus = 1,
                         Password = "123456"
                     };
                     _customerService.AddCustomer(newCustomer);
                     customer = _customerService.GetCustomerByEmail(txtEmail.Text);
-                }   
-                var booking = new BookingHistory
+                }
+                var booking = new BookingReservation
                 {
-                    RoomID = room.RoomID,
-                    CustomerID = customer.CustomerID,
+                    //RoomID = room.RoomID,
+                    //CustomerID = customer.CustomerID,
+                    //BookingStatus = 1,
+                    //CheckInDate = DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null),
+                    //CheckOutDate = DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null),
+                    //NumberOfPeople = int.Parse(txtNumberPeople.Text),
+                    //TotalPrice = double.Parse(room.RoomPricePerDate.ToString()) * ((double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days)
+
+                    BookingDate = DateOnly.FromDateTime(DateTime.Now),
+                    CustomerId = customer.CustomerId,
+                    TotalPrice = decimal.Parse(room.RoomPricePerDay.ToString()) * ((decimal)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (decimal)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days),
                     BookingStatus = 1,
-                    CheckInDate = DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null),
-                    CheckOutDate = DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null),
-                    NumberOfPeople = int.Parse(txtNumberPeople.Text),
-                    TotalPrice = double.Parse(room.RoomPricePerDate.ToString()) * ((double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days)
+
                 };
-                if (_roomService.GetRoomById(room.RoomID).RoomStatus == 0)
+                if (_roomInformationService.GetRoomInformationById(room.RoomId).RoomStatus == 0)
                 {
                     MessageBox.Show("Room is not available");
                     return;
                 } else
                 {
-                    _roomService.GetRoomById(room.RoomID).RoomStatus = 0;
+                    _roomInformationService.GetRoomInformationById(room.RoomId).RoomStatus = 0;
                 }
 
-                _bookingService.AddBookingHistory(booking);
+                _bookingReservationService.AddBookingReservation(booking);
+
+                var bookingDetail = _bookingDetailService.GetBookingDetailByBookingReserveId(booking.BookingReservationId);
+
+                bookingDetail.RoomId = room.RoomId;
+                bookingDetail.StartDate = DateOnly.Parse(txtStartDay.Text);
+                bookingDetail.EndDate = DateOnly.Parse(txtEndDay.Text);
+
                 LoadRoom();
                 
                 MessageBox.Show("Booking successfully!");
@@ -167,50 +182,29 @@ namespace WPFApp
         private void cboRoomtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try {
-                cboRoom.ItemsSource = _roomService.GetAllRooms().Where(r => r.RoomTypeID == (int)cboRoomType.SelectedValue && r.RoomStatus == 1)
+                cboRoom.ItemsSource = _roomInformationService.GetAllRoomInformations().Where(r => r.RoomTypeId == (int)cboRoomType.SelectedValue && r.RoomStatus == 1)
                 .Select(r => r.RoomNumber);
                 cboRoom.SelectedIndex = 0;
                 txtStatus.Text = "Available";
+
             } catch (Exception ex)
             {
 
-            }
-        }
-
-        private void txtNumberPeople_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                var max = _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomMaxCapacity;
-                if (int.TryParse(txtNumberPeople.Text, out int numberPeople))
-                {
-                    if (numberPeople > max)
-                    {
-                        MessageBox.Show("Please enter a number less than or equal to " + max);
-                        txtNumberPeople.Text = max.ToString();
-                        return;
-                    }
-                }
-
-                lbRoomPrice.Content = "Room Price: " + _roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDate.ToString();
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Please choose the room in room and room type combo box !");
             }
         }
 
         private void btnCheckOut_Click(object sender, RoutedEventArgs e)
         {
-            Room roomSelected = dgRoom.SelectedItem as Room;
+            RoomInformation roomSelected = dgRoom.SelectedItem as RoomInformation;
             if (roomSelected == null)
             {
                 MessageBox.Show("Please select a room in data grid");
                 return;
-            } else if (_roomService.GetRoomByRoomNumber(roomSelected.RoomNumber) == null)
+            } else if (_roomInformationService.GetRoomInformationByRoomNumber(roomSelected.RoomNumber) == null)
             {
                 MessageBox.Show("Room not found");
                 return;
-            } else if (_roomService.GetRoomByRoomNumber(roomSelected.RoomNumber).RoomStatus == 1)
+            } else if (_roomInformationService.GetRoomInformationByRoomNumber(roomSelected.RoomNumber).RoomStatus == 1)
             {
 
                 MessageBox.Show("This room is available");
@@ -231,7 +225,7 @@ namespace WPFApp
         {
             try
             {
-                var totalPrice = double.Parse(_roomService.GetRoomByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDate.ToString()) * ((double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days);
+                var totalPrice = double.Parse(_roomInformationService.GetRoomInformationByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDay.ToString()) * ((double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (double)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days);
                 lbTotalPrice.Content = "Price: " + totalPrice.ToString() + "Đ";
 
             } catch (Exception ex)
@@ -239,6 +233,12 @@ namespace WPFApp
                 MessageBox.Show("Invalid date format. Please use d/M/yyyy.");
                 return;
             }
+        }
+
+        private void cboRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            lbRoomPrice.Content = "Room Price: " + _roomInformationService.GetRoomInformationByRoomNumber(cboRoom.SelectedValue.ToString()).RoomPricePerDay.ToString();
         }
     }
 }

@@ -38,8 +38,8 @@ namespace WPFApp
 
         private void btnBookingHistory_Click(object sender, RoutedEventArgs e)
         {
-              BookingHistoryPageForCustomer bookingHistoryPageForCustomer = App.ServiceProvider.GetRequiredService<BookingHistoryPageForCustomer>();
-            bookingHistoryPageForCustomer.Show();
+              BookingReservationPageForCustomer bookingReservationPageForCustomer = App.ServiceProvider.GetRequiredService<BookingReservationPageForCustomer>();
+            bookingReservationPageForCustomer.Show();
             this.Close();
         }
 

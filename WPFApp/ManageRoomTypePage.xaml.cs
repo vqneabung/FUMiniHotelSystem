@@ -60,7 +60,7 @@ namespace WPFApp
 
                 roomType.RoomTypeName = updateRoomTypeName;
                 roomType.TypeDescription = updateTypeDescription;
-                roomType.TypenNote = updateTypeNote;
+                roomType.TypeNote = updateTypeNote;
 
                 _roomTypeService.UpdateRoomType(roomType);
                 LoadRoomType();
@@ -85,7 +85,7 @@ namespace WPFApp
                 {
                     RoomTypeName = txtRoomTypeName.Text,
                     TypeDescription = txtTypeDescription.Text,
-                    TypenNote = txtTypeNote.Text
+                    TypeNote = txtTypeNote.Text
                 };
 
                 _roomTypeService.AddRoomType(newRoomType);
@@ -110,7 +110,7 @@ namespace WPFApp
                     MessageBox.Show("Room Type not found");
                     return;
                 }
-                _roomTypeService.DeleteRoomType(roomType.RoomTypeID);
+                _roomTypeService.DeleteRoomType(roomType.RoomTypeId);
                 LoadRoomType();
                 Clear();
                 MessageBox.Show("Delete Room Type Successfully");
@@ -135,10 +135,10 @@ namespace WPFApp
             var roomType = dgRoomType.SelectedItem as RoomType;
             if (roomType != null)
             {
-                txtRoomTypeID.Text = roomType.RoomTypeID.ToString();
+                txtRoomTypeID.Text = roomType.RoomTypeId.ToString();
                 txtRoomTypeName.Text = roomType.RoomTypeName;
                 txtTypeDescription.Text = roomType.TypeDescription;
-                txtTypeNote.Text = roomType.TypenNote;
+                txtTypeNote.Text = roomType.TypeNote;
             }
 
         }

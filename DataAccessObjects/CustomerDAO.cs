@@ -24,11 +24,14 @@ namespace DataAccessObjects
         {
            customer.CustomerId = _context.Customers.Max(c => c.CustomerId) + 1;
             _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
         public void UpdateCustomer(Customer customer)
         {
             _context.Customers.Update(customer);
+            _context.Entry(customer).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void DeleteCustomer(int customerId)
@@ -37,6 +40,7 @@ namespace DataAccessObjects
             if (customer != null)
             {
                 _context.Customers.Remove(customer);
+                _context.SaveChanges();
             }
         }
 

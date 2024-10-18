@@ -64,7 +64,7 @@ namespace WPFApp
 
         private void btnBookingHistory(object sender, RoutedEventArgs e)
         {
-            BookingHistoryPage bookingHistoryPage = App.ServiceProvider.GetRequiredService<BookingHistoryPage>();
+            BookingReservationPage bookingHistoryPage = App.ServiceProvider.GetRequiredService<BookingReservationPage>();
             bookingHistoryPage.Show();
             this.Close();
         }

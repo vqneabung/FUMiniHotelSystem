@@ -12,7 +12,7 @@ namespace Services
         void AddBookingDetail(BookingDetail bookingDetail);
         void DeleteBookingDetail(int id);
         List<BookingDetail> GetAllBookingDetails();
-        BookingDetail GetBookingDetailById(int bookingDetailId);
+        BookingDetail GetBookingDetailByBookingReserveId(int bookingDetailId);
 
         void UpdateBookingDetail(BookingDetail bookingDetail);
 

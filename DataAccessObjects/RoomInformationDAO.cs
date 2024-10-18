@@ -35,16 +35,20 @@ namespace DataAccessObjects
         {
             room.RoomId = _context.RoomInformations.Max(r => r.RoomId) + 1;
             _context.RoomInformations.Add(room);
+            _context.SaveChanges();
         }
 
         public void UpdateRoom(RoomInformation room)
         {
            _context.RoomInformations.Update(room);
+            _context.Entry(room).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void DeleteRoom(int roomId)
         {
            _context.RoomInformations.Remove(GetRoomInformationById(roomId));
+            _context.SaveChanges();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace DataAccessObjects
   
             bookingReservation.BookingReservationId = _context.BookingReservations.Max(b => b.BookingReservationId) + 1;
            _context.BookingReservations.Add(bookingReservation);
+            _context.SaveChanges();
 
         }
 
@@ -31,6 +32,7 @@ namespace DataAccessObjects
             if (bookingReservation != null)
             {
                 _context.BookingReservations.Remove(bookingReservation);
+                _context.SaveChanges();
             }
         }
 
@@ -54,6 +56,8 @@ namespace DataAccessObjects
         public void UpdateBookingReservation(BookingReservation bookingReservation)
         {
             _context.BookingReservations.Update(bookingReservation);
+            _context.Entry(bookingReservation).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
 

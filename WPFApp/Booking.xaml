@@ -59,7 +59,7 @@
                             <AccessText Text="Room"/>
                         </StackPanel>
                     </Label>
-                    <ComboBox Name="cboRoom"/>
+                    <ComboBox Name="cboRoom" SelectionChanged="cboRoom_SelectionChanged"/>
                     <Label Target="{Binding ElementName=txtStatus}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
@@ -67,13 +67,6 @@
                         </StackPanel>
                     </Label>
                     <TextBox x:Name="txtStatus" IsReadOnly="True"/>
-                    <Label Target="{Binding ElementName=txtNumberPeople}" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                            <AccessText Text="Number of People"/>
-                        </StackPanel>
-                    </Label>
-                    <TextBox x:Name="txtNumberPeople" TextChanged="txtNumberPeople_TextChanged"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="143">
                             <Label Target="{Binding ElementName=txtStartDay}" >
