@@ -25,7 +25,7 @@
             <Button Click="btnLogin_Click" Margin="200 10" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="https://www.vecteezy.com/free-vector/login-icon"/>
-                    <TextBlock Margin="5 0">Login</TextBlock> 
+                    <TextBlock Margin="5 0">Login</TextBlock>
                 </StackPanel>
             </Button>
             <Button Click="btnClose_Click" Margin="200 10" >Close</Button>

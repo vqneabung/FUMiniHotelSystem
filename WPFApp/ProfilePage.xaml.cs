@@ -62,13 +62,23 @@ namespace WPFApp
             var updateBirtday = txtBirthday.Text;
 
             var customer = _customerService.GetCustomerByEmail(txtEmail.Text);
-            customer.Telephone = updateTelephone;
             customer.CustomerFullName = updateFullName;
+
+
+            if (updateTelephone.Length <= 12)
+            {
+                customer.Telephone = updateTelephone;
+            } else
+            {
+                MessageBox.Show("Phone lenght is smaller than 12 number");
+                return;
+            }
 
             if (DateOnly.TryParse(updateBirtday, out DateOnly parseDateOnly))
             {
                 customer.CustomerBirthday = parseDateOnly;
             }
+            
             else
             {
                 MessageBox.Show("Invalid date format. Please use d/M/yyyy.");

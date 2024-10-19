@@ -33,7 +33,6 @@ namespace DataAccessObjects
 
         public void AddRoom(RoomInformation room)
         {
-            room.RoomId = _context.RoomInformations.Max(r => r.RoomId) + 1;
             _context.RoomInformations.Add(room);
             _context.SaveChanges();
         }

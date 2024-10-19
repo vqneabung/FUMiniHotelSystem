@@ -53,7 +53,7 @@
                         </StackPanel>
                     </Label>
                     <ComboBox Name="cboRoomType" SelectionChanged="cboRoomtype_SelectionChanged"/>
-                    <Label Target="{Binding ElementName=txtRoomType}" >
+                    <Label Target="{Binding ElementName=cboRoom}" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
                             <AccessText Text="Room"/>
@@ -99,10 +99,21 @@
                     <StackPanel Orientation="Vertical">
                         <Label Content="+ Nếu trả phòng, chọn phòng ở phần bảng phòng ở dưới,, và hệ&#xD;&#xA;thông cập nhật trạng thái từ 0 -&gt; 1, tức là phòng đang ở chế đọ&#xD;&#xA;có sẵn&#xD;&#xA;&#xD;&#xA;- Lưu ý, có một sô bug có thể phát sinh!" Height="112"/>
                     </StackPanel>
+                    <StackPanel>
+                        <Button Width="139" Margin="10 10" Click="btnAddRoom_Click" Height="33">Add Room</Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="20 10" Height="500">
-                <DataGrid Height="170" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgRoom" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
+            <StackPanel Margin="20 10" Height="164">
+                <DataGrid x:Name="dgBookingDetails" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}" />
+                        <DataGridTextColumn Header="Room Number" Binding="{Binding Room.RoomNumber}" />
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" />
+                        <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" />
+                        <DataGridTextColumn Header="Actual Price" Binding="{Binding ActualPrice}" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,623,0,-23" Orientation="Horizontal">

@@ -30,9 +30,9 @@ namespace DataAccessObjects
             _context.SaveChanges();
         }
 
-        public void DeleteBookingDetail(int bookingDetailId)
+        public void DeleteBookingDetail(int bookingReservationId, int roomId)
         {
-            var bookingDetail = GetBookingDetailById(bookingDetailId);
+            var bookingDetail = GetBookingDetailByBookingReservationAndRoomInformation(bookingReservationId, roomId);
             if (bookingDetail != null)
             {
                 _context.BookingDetails.Remove(bookingDetail);
@@ -40,15 +40,19 @@ namespace DataAccessObjects
             }
         }
 
-        public BookingDetail? GetBookingDetailById(int booking)
+        public BookingDetail? GetBookingDetailByBookingReservationAndRoomInformation(int bookingReservationId, int roomId)
         {
-            return _context.BookingDetails.Find(booking);
+            return _context.BookingDetails.Find(bookingReservationId, roomId);
 
         }
 
         public List<BookingDetail> GetAllBookingDetails()
         {
-            return _context.BookingDetails.ToList();
+            return _context.BookingDetails
+                .Include(bd => bd.BookingReservation)
+                .Include(bd => bd.Room)
+                .Include(bd => bd.BookingReservation.Customer)
+                .ToList();
 
         }
     }

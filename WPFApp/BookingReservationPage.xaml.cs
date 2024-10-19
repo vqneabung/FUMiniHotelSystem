@@ -34,55 +34,59 @@ namespace WPFApp
             _roomInformationService = roomInformationService;
             _customerService = customerService;
             _bookingDetailService = bookingDetailService;
-            LoadBookingHistory();
-            SetupBookingHistoryDataGrid();
+            LoadBookingReservation();
        
         }
 
-        public void LoadBookingHistory()
+        public void LoadBookingReservation()
         {
-            var bookingHistories = _bookingReservationService.GetAllBookingReservations();
-            dgBookingHistory.ItemsSource = null;
-            dgBookingHistory.ItemsSource = bookingHistories;
+            var bookingDetail = _bookingDetailService.GetAllBookingDetails();
+            dgBookingDetails.ItemsSource = null;
+            dgBookingDetails.ItemsSource = bookingDetail;
         }
 
-        public void SetupBookingHistoryDataGrid()
+        private void dgBookingDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dgBookingHistory.AutoGenerateColumns = false;
-            dgBookingHistory.Columns.Clear();
+            //var bookingReservation = dgBookingHistory.SelectedItem as BookingReservation;
+            //if (bookingReservation != null)
+            //{
+            //txtBookingID.Text = bookingReservation.BookingReservationId.ToString();
+            //txtCustomerEmail.Text = customer.EmailAddress.ToString();
+            //txtCustomerName.Text = customer.CustomerFullName.ToString();
+            //txtRoomNumber.Text = bookingDetail.Room.RoomNumber.ToString();
+            //txtCheckInDate.Text = bookingDetail.StartDate.ToString();
+            //txtCheckOutDate.Text = bookingDetail.EndDate.ToString();
+            //txtBookingStatus.Text = bookingDetail.Room.RoomStatus.ToString();
+            //txtTotalPrice.Text = bookingDetail.ActualPrice.ToString();
+            //    var customer = _customerService.GetCustomerById(bookingReservation.CustomerId);
+            //    if (customer != null)
+            //    {
+            //        txtCustomerEmail.Text = customer.EmailAddress.ToString();
+            //        txtCustomerName.Text = customer.CustomerFullName.ToString();
+            //    }
+            //    var bookingDetail = _bookingDetailService.GetAllBookingDetails().FirstOrDefault(bd => bd.BookingReservationId == bookingReservation.BookingReservationId);
+            //    if (bookingDetail != null)
+            //    {
 
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Booking ID", Binding = new Binding("BookingReservationId") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Customer ID", Binding = new Binding("CustomerId") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Customer Name", Binding = new Binding("Customer.CustomerFullName") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Room Number", Binding = new Binding("BookingDetail.RoomInformation.RoomNumber") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Check In Date", Binding = new Binding("BookingDetail.StartDate") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Check Out Date", Binding = new Binding("BookingDetail.EndDate") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Booking Status", Binding = new Binding("BookingDetail.RoomInformation.RoomStatus") });
-            dgBookingHistory.Columns.Add(new DataGridTextColumn { Header = "Total Price", Binding = new Binding("BookingDetail.ActualPrice") });
-        }
+            //    }
+            //}
 
-        private void dgBookingHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var bookingReservation = dgBookingHistory.SelectedItem as BookingReservation;
-            if (bookingReservation != null)
+            var bookingDetail = dgBookingDetails.SelectedItem as BookingDetail;
+
+            if (bookingDetail != null)
             {
-                txtBookingID.Text = bookingReservation.BookingReservationId.ToString();
-                var customer = _customerService.GetCustomerById(bookingReservation.CustomerId);
-                if (customer != null)
-                {
-                    txtCustomerEmail.Text = customer.EmailAddress.ToString();
-                    txtCustomerName.Text = customer.CustomerFullName.ToString();
-                }
-                var bookingDetail = _bookingDetailService.GetAllBookingDetails().FirstOrDefault(bd => bd.BookingReservationId == bookingReservation.BookingReservationId);
-                if (bookingDetail != null)
-                {
-                    txtRoomNumber.Text = bookingDetail.Room.RoomNumber.ToString();
-                    txtCheckInDate.Text = bookingDetail.StartDate.ToString();
-                    txtCheckOutDate.Text = bookingDetail.EndDate.ToString();
-                    txtBookingStatus.Text = bookingDetail.Room.RoomStatus.ToString();
-                    txtTotalPrice.Text = bookingDetail.ActualPrice.ToString();
-                }
+                txtBookingID.Text = bookingDetail.BookingReservationId.ToString();
+                txtCustomerEmail.Text = bookingDetail.BookingReservation.Customer.EmailAddress.ToString();
+                txtCustomerName.Text = bookingDetail.BookingReservation.Customer.CustomerFullName?.ToString();
+                txtRoomNumber.Text = bookingDetail.Room.RoomNumber.ToString();
+                txtCheckInDate.Text = bookingDetail.StartDate.ToString();
+                txtCheckOutDate.Text = bookingDetail.EndDate.ToString();
+                txtBookingStatus.Text = bookingDetail.Room.RoomStatus.ToString();
+                txtTotalPrice.Text = bookingDetail.ActualPrice.ToString();
             }
+
+
+
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -96,8 +100,7 @@ namespace WPFApp
                 var updateBookingStatus = txtBookingStatus.Text;
                 var updateTotalPrice = txtTotalPrice.Text;
 
-                var bookingReservation = _bookingReservationService.GetBookingReservationById(Convert.ToInt32(updateBookingReservationID));
-                var bookingDetail = _bookingDetailService.GetBookingDetailByBookingReserveId(Convert.ToInt32(updateBookingReservationID));
+                var bookingDetail = _bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(Convert.ToInt32(updateBookingReservationID), Convert.ToInt32(updateRoomNumber));
 
 
                 bookingDetail.RoomId = _roomInformationService.GetRoomInformationById(Convert.ToInt32(updateRoomNumber)).RoomId;
@@ -120,8 +123,9 @@ namespace WPFApp
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var bookingID = int.Parse(txtBookingID.Text);
-            if (_bookingDetailService.GetBookingDetailByBookingReserveId(bookingID) != null) {
-                _bookingDetailService.DeleteBookingDetail(bookingID);
+            var roomNumber = int.Parse(txtRoomNumber.Text);
+            if (_bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(bookingID, roomNumber) != null) {
+                _bookingDetailService.DeleteBookingDetail(bookingID, roomNumber);
                 MessageBox.Show("Delete successfully!");
             }
             else
@@ -134,7 +138,7 @@ namespace WPFApp
         {
             AdminPage adminPage = new AdminPage();
             adminPage.Show();
-            this.Close();   
+            this.Close();
 
         }
     }

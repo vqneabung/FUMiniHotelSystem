@@ -1,54 +1,54 @@
-﻿using BussinessObjects;
-using Repositories;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using BussinessObjects;
+    using Repositories;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace Services
-{
-    public class RoomInformationService : IRoomInformationService
+    namespace Services
     {
-        private readonly IRoomInformationService _roomInfomationRepository;
-
-        public RoomInformationService(IRoomInformationService roomInformationRepository)
+        public class RoomInformationService : IRoomInformationService
         {
-            _roomInfomationRepository = roomInformationRepository;
-        }
+            private readonly IRoomInformationRepository _roomInfomationRepository;
 
-        public void AddRoomInformation(RoomInformation room)
-        {
-            _roomInfomationRepository.AddRoomInformation(room);
-        }
+            public RoomInformationService(IRoomInformationRepository roomInformationRepository)
+            {
+                _roomInfomationRepository = roomInformationRepository;
+            }
 
-        public void DeleteRoomInformation(int id)
-        {
-            _roomInfomationRepository.DeleteRoomInformation(id);
-        }
+            public void AddRoomInformation(RoomInformation room)
+            {
+                _roomInfomationRepository.AddRoomInformation(room);
+            }
 
-        public List<RoomInformation> GetAllRoomInformations() {
+            public void DeleteRoomInformation(int id)
+            {
+                _roomInfomationRepository.DeleteRoomInformation(id);
+            }
+
+            public List<RoomInformation> GetAllRoomInformations() {
     
-            return _roomInfomationRepository.GetAllRoomInformations();
+                return _roomInfomationRepository.GetAllRoomInformations();
+            }
+
+            public RoomInformation GetRoomInformationByRoomNumber(string roomNumber)
+            {
+                return _roomInfomationRepository.GetRoomInformationByRoomNumber(roomNumber);
+            }
+
+
+            public RoomInformation GetRoomInformationById(int id)
+            {
+                return _roomInfomationRepository.GetRoomInformationById(id);
+            }
+
+            public void UpdateRoomInformation(RoomInformation room)
+            {
+                _roomInfomationRepository.UpdateRoomInformation(room);
+            }
+
         }
-
-        public RoomInformation GetRoomInformationByRoomNumber(string roomNumber)
-        {
-            return _roomInfomationRepository.GetRoomInformationByRoomNumber(roomNumber);
-        }
-
-
-        public RoomInformation GetRoomInformationById(int id)
-        {
-            return _roomInfomationRepository.GetRoomInformationById(id);
-        }
-
-        public void UpdateRoomInformation(RoomInformation room)
-        {
-            _roomInfomationRepository.UpdateRoomInformation(room);
-        }
-
     }
-}

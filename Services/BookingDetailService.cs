@@ -22,9 +22,9 @@ namespace Services
             _bookingDetailRepository.AddBookingDetail(bookingDetail);
         }
 
-        public void DeleteBookingDetail(int id)
+        public void DeleteBookingDetail(int bookingReservationId, int roomInformationId)
         {
-            _bookingDetailRepository.DeleteBookingDetail(id);
+            _bookingDetailRepository.DeleteBookingDetail(bookingReservationId, roomInformationId);
         }
 
         public List<BookingDetail> GetAllBookingDetails()
@@ -32,9 +32,9 @@ namespace Services
             return _bookingDetailRepository.GetAllBookingDetails();
         }
 
-        public BookingDetail GetBookingDetailByBookingReserveId(int booking)
+        public BookingDetail GetBookingDetailByBookingReservationAndRoomInformation(int bookingReservationId, int roomInformationId)
         {
-            return _bookingDetailRepository.GetBookingDetailByBookingReserveId(booking);
+            return _bookingDetailRepository.GetBookingDetailByBookingReservationAndRoomInformation(bookingReservationId, roomInformationId);
         }
 
         public void UpdateBookingDetail(BookingDetail bookingDetail)

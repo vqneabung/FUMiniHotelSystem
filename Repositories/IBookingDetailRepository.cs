@@ -10,9 +10,9 @@ namespace Repositories
     public interface IBookingDetailRepository
     {
         void AddBookingDetail(BookingDetail bookingDetail);
-        void DeleteBookingDetail(int id);
+        void DeleteBookingDetail(int bookingReservationId, int roomInformationId);
         List<BookingDetail> GetAllBookingDetails();
-        BookingDetail GetBookingDetailByBookingReserveId(int bookingDetailId);
+        BookingDetail GetBookingDetailByBookingReservationAndRoomInformation(int bookingReservationId, int roomId);
 
         void UpdateBookingDetail(BookingDetail bookingDetail);
     }

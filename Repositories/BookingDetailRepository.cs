@@ -23,9 +23,9 @@ namespace Repositories
             _bookingDetailDAO.AddBookingDetail(bookingDetail);
         }
 
-        public void DeleteBookingDetail(int id)
+        public void DeleteBookingDetail(int bookingReservationId, int roomInformationId)
         {
-          _bookingDetailDAO.DeleteBookingDetail(id);
+          _bookingDetailDAO.DeleteBookingDetail(bookingReservationId, roomInformationId);
         }
 
         public List<BookingDetail> GetAllBookingDetails()
@@ -33,9 +33,9 @@ namespace Repositories
            return _bookingDetailDAO.GetAllBookingDetails();
         }
 
-        public BookingDetail GetBookingDetailByBookingReserveId(int bookingDetailId)
+        public BookingDetail GetBookingDetailByBookingReservationAndRoomInformation(int bookingReservationId, int roomInformationId)
         {
-            return _bookingDetailDAO.GetBookingDetailById(bookingDetailId);
+            return _bookingDetailDAO.GetBookingDetailByBookingReservationAndRoomInformation(bookingReservationId, roomInformationId);
         }
 
         public void UpdateBookingDetail(BookingDetail bookingDetail)

@@ -30,27 +30,6 @@
                     </StackPanel>
                 </Label>
                 <TextBox x:Name="txtCustomerName" IsReadOnly="True"/>
-                <Label Target="{Binding ElementName=txtRoomNumber}" >
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Room Number"/>
-                    </StackPanel>
-                </Label>
-                <TextBox x:Name="txtRoomNumber"/>
-                <Label Target="{Binding ElementName=txtCheckInDate}" >
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Check In Date"/>
-                    </StackPanel>
-                </Label>
-                <TextBox x:Name="txtCheckInDate"/>
-                <Label Target="{Binding ElementName=txtCheckOutDate}" >
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
-                        <AccessText Text="Check Out Date"/>
-                    </StackPanel>
-                </Label>
-                <TextBox x:Name="txtCheckOutDate"/>
                 <Label Target="{Binding ElementName=txtBookingStatus}" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png"/>
@@ -67,7 +46,7 @@
                 <TextBox x:Name="txtTotalPrice"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="127">
-                <DataGrid Height="224" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgBookingHistory" SelectionChanged="dgBookingHistory_SelectionChanged" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
+                <DataGrid Height="224" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgBookingReservation" SelectionChanged="dgBookingReservation_SelectionChanged" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
                     <DataGrid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

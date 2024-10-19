@@ -67,7 +67,7 @@
                 <TextBox x:Name="txtTotalPrice"/>
             </StackPanel>
             <StackPanel Margin="20 10" Height="127">
-                <DataGrid Height="336" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgBookingHistory" SelectionChanged="dgBookingHistory_SelectionChanged" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
+                <DataGrid Height="336" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="dgBookingDetails" SelectionChanged="dgBookingDetails_SelectionChanged" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
                     <DataGrid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

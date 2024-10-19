@@ -37,7 +37,6 @@ namespace WPFApp
             var rooms = _roomInformationService.GetAllRoomInformations();
             dgRoom.ItemsSource = null;
             dgRoom.ItemsSource = rooms;
-            SetupRoomDataGrid();
             LoadRoomType();
         }
 
@@ -47,7 +46,7 @@ namespace WPFApp
             cboRoomType.ItemsSource = null;
             cboRoomType.ItemsSource = roomTypes;
             cboRoomType.DisplayMemberPath = "RoomTypeName";
-            cboRoomType.SelectedValuePath = "RoomTypeID";
+            cboRoomType.SelectedValuePath = "RoomTypeId";
             cboRoomType.SelectedIndex = 0;
         }
 
@@ -60,22 +59,6 @@ namespace WPFApp
 
         }
 
-        public void SetupRoomDataGrid()
-        {
-            dgRoom.AutoGenerateColumns = false; // Tắt tự động tạo cột
-
-            // Xóa tất cả các cột trước khi thêm mới
-            dgRoom.Columns.Clear();
-
-            // Thêm các cột theo thứ tự mong muốn
-            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room ID", Binding = new Binding("RoomID") });
-            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Number", Binding = new Binding("RoomNumber") });
-            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Type Name", Binding = new Binding("RoomType.RoomTypeName") });
-            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Max Capacity", Binding = new Binding("RoomMaxCapacity") });
-            dgRoom.Columns.Add(new DataGridTextColumn { Header = "Room Status", Binding = new Binding("RoomStatus") });
-
-
-        }
 
         private void dgRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -129,7 +112,7 @@ namespace WPFApp
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            if (txtRoomNumber.Text != "" && txtMaxCapacity.Text != "" && txtStatus.Text != "" && txtDescribe.Text != "")
+            if (txtRoomNumber.Text != "" && txtMaxCapacity.Text != "" && txtDescribe.Text != "")
             {
                 var roomNumber = txtRoomNumber.Text;
                 var roomType = cboRoomType.SelectedValue.ToString();
