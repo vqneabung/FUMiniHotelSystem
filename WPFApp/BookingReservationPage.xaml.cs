@@ -89,50 +89,51 @@ namespace WPFApp
 
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var updateBookingReservationID = txtBookingID.Text;
-                var updateRoomNumber = txtRoomNumber.Text;
-                var updateCheckInDate = DateOnly.Parse(txtCheckInDate.Text);
-                var updateCheckOutDate = DateOnly.Parse(txtCheckOutDate.Text);
-                var updateBookingStatus = txtBookingStatus.Text;
-                var updateTotalPrice = txtTotalPrice.Text;
+        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
 
-                var bookingDetail = _bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(Convert.ToInt32(updateBookingReservationID), Convert.ToInt32(updateRoomNumber));
+        //        var bookingDetail = _bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(Convert.ToInt32(txtBookingID.Text), Convert.ToInt32(txtRoomNumber.Text));
 
-
-                bookingDetail.RoomId = _roomInformationService.GetRoomInformationById(Convert.ToInt32(updateRoomNumber)).RoomId;
-                bookingDetail.StartDate = updateCheckInDate;
-                bookingDetail.EndDate = updateCheckOutDate;
-                bookingDetail.BookingReservation.BookingStatus = Convert.ToByte(updateBookingStatus);
-                bookingDetail.BookingReservation.TotalPrice = Convert.ToDecimal(updateTotalPrice);
-
-                _bookingDetailService.UpdateBookingDetail(bookingDetail);
-                MessageBox.Show("Update successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Please fill all the fields");
-            }
+        //        var updateBookingReservationID = txtBookingID.Text;
+        //        var updateRoomNumber = txtRoomNumber.Text;
+        //        var updateCheckInDate = DateOnly.ParseExact(txtCheckInDate.Text, "d/M/yyyy", null);
+        //        var updateCheckOutDate = DateOnly.ParseExact(txtCheckOutDate.Text, "d/M/yyyy", null);
+        //        var updateBookingStatus = txtBookingStatus.Text;
+        //        var updateTotalPrice = txtTotalPrice.Text;
 
 
-        }
+        //        bookingDetail.RoomId = _roomInformationService.GetRoomInformationByRoomNumber(updateRoomNumber).RoomId;
+        //        bookingDetail.StartDate = updateCheckInDate;
+        //        bookingDetail.EndDate = updateCheckOutDate;
+        //        bookingDetail.BookingReservation.BookingStatus = Convert.ToByte(updateBookingStatus);
+        //        bookingDetail.BookingReservation.TotalPrice = Convert.ToDecimal(updateTotalPrice);
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            var bookingID = int.Parse(txtBookingID.Text);
-            var roomNumber = int.Parse(txtRoomNumber.Text);
-            if (_bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(bookingID, roomNumber) != null) {
-                _bookingDetailService.DeleteBookingDetail(bookingID, roomNumber);
-                MessageBox.Show("Delete successfully!");
-            }
-            else
-            {
-                MessageBox.Show("Please select booking history!");
-            }
-        }
+        //        _bookingDetailService.UpdateBookingDetail(bookingDetail);
+        //        MessageBox.Show("Update successfully!");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Please fill all the fields");
+        //    }
+
+
+        //}
+
+        //private void btnDelete_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var bookingID = int.Parse(txtBookingID.Text);
+        //    var roomNumber = int.Parse(txtRoomNumber.Text);
+        //    if (_bookingDetailService.GetBookingDetailByBookingReservationAndRoomInformation(bookingID, roomNumber) != null) {
+        //        _bookingDetailService.DeleteBookingDetail(bookingID, roomNumber);
+        //        MessageBox.Show("Delete successfully!");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select booking history!");
+        //    }
+        //}
 
         private void btnReturnToAdmin_Click(object sender, RoutedEventArgs e)
         {

@@ -92,7 +92,6 @@ namespace WPFApp
                     MessageBox.Show("Please fill in all fields");
                     return;
                 }
-                var room = _roomInformationService.GetRoomInformationByRoomNumber(cboRoom.SelectedValue.ToString());
                 var customer = _customerService.GetCustomerByEmail(txtEmail.Text);
                 if (customer == null)
                 {
@@ -120,25 +119,23 @@ namespace WPFApp
 
                     BookingDate = DateOnly.FromDateTime(DateTime.Now),
                     CustomerId = customer.CustomerId,
-                    TotalPrice = decimal.Parse(room.RoomPricePerDay.ToString()) * ((decimal)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days < 0 ? throw new Exception() : (decimal)(DateTime.ParseExact(txtEndDay.Text, "d/M/yyyy", null) - DateTime.ParseExact(txtStartDay.Text, "d/M/yyyy", null)).Days),
                     BookingStatus = 1,
+                    TotalPrice = 0
 
 
                 };
 
                 for (int i = 0; i < dgBookingDetails.Items.Count; i++)
-                {   
-                    booking.BookingDetails.Add(dgBookingDetails.Items[i] as BookingDetail);
-                }
-
-                if (_roomInformationService.GetRoomInformationById(room.RoomId).RoomStatus == 0)
                 {
-                    MessageBox.Show("Room is not available");
-                    return;
-                }
-                else
-                {
-                    _roomInformationService.GetRoomInformationById(room.RoomId).RoomStatus = 0;
+                    var getBookingDetail = dgBookingDetails.Items[i] as BookingDetail;
+                    if (_roomInformationService.GetRoomInformationById(getBookingDetail.RoomId).RoomStatus == 0)
+                    {
+                        MessageBox.Show("Room is not available");
+                        return;
+                    }
+                    getBookingDetail.Room.RoomStatus = 0;
+                    booking.TotalPrice += getBookingDetail.ActualPrice;
+                    booking.BookingDetails.Add(getBookingDetail);
                 }
 
                 _bookingReservationService.AddBookingReservation(booking);
@@ -232,6 +229,7 @@ namespace WPFApp
                 roomInformation.RoomStatus = 1;
                 _roomInformationService.UpdateRoomInformation(roomInformation);
                 MessageBox.Show("Check Out!");
+                txtStatus.Text = "Available";
             }
             else
             {
@@ -336,7 +334,6 @@ namespace WPFApp
                         }
                     }
                 } catch (Exception ex) { }
-                bookingDetail.Room.RoomStatus = 0;
                 dgBookingDetails.Items.Add(bookingDetail);
             }
             catch (FormatException)

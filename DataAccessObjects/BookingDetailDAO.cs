@@ -42,7 +42,7 @@ namespace DataAccessObjects
 
         public BookingDetail? GetBookingDetailByBookingReservationAndRoomInformation(int bookingReservationId, int roomId)
         {
-            return _context.BookingDetails.Find(bookingReservationId, roomId);
+            return _context.BookingDetails.Where(bd => bd.BookingReservationId == bookingReservationId && bd.RoomId == roomId).FirstOrDefault();
 
         }
 

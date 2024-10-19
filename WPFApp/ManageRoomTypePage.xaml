@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="ManageRoomTypePage" Height="450" Width="800">
+        Title="ManageRoomTypePage" Height="654" Width="800">
     <Grid>
-        <StackPanel Margin="0,0,0,79">
+        <StackPanel Margin="0,0,0,137">
             <StackPanel Margin="20 0">
                 <Label Target="{Binding ElementName=txtRoomTypeID}" >
                     <StackPanel Orientation="Horizontal">
@@ -38,11 +38,11 @@
                 </Label>
                 <TextBox x:Name="txtTypeNote"/>
             </StackPanel>
-            <StackPanel Margin="20 10" Height="127">
-                <DataGrid Height="213" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoomType" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
+            <StackPanel Margin="20 10" Height="200">
+                <DataGrid Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" Name="dgRoomType" SelectionChanged="dgRoom_SelectionChanged" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Margin="0,360,0,10" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+        <StackPanel Margin="0,555,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5" Height="73" VerticalAlignment="Top">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1"/>
